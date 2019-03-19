@@ -1,18 +1,18 @@
 from collections import namedtuple
 
-PointsToAdjustNoses = namedtuple('PointsToAdjustNoses',
-                                 ["bottom_left_corner",
-                                  "bottom_right_corner",
-                                  "top_right_corner",
-                                  "top_left_corner"])
+FourEndpointsOfANose = namedtuple("FourEndpointsOfANose",
+                                 ["bottom_left_endpoint",
+                                  "bottom_right_endpoint",
+                                  "top_right_endpoint",
+                                  "top_left_endpoint"])
 
-CutFieldOfNoses = namedtuple("CutFieldOfNoses",
-                             ["bottom_left_corner",
-                              "bottom_right_corner",
-                              "middle_right_point",
-                              "top_right_corner",
-                              "top_left_corner",
-                              "middle_left_point"])
+SixEndpointsOfANose = namedtuple("SixEndpointsOfANose",
+                                ["bottom_left_endpoint",
+                                 "bottom_right_endpoint",
+                                 "middle_right_endpoint",
+                                 "top_right_endpoint",
+                                 "top_left_endpoint",
+                                 "middle_left_endpoint"])
 
 EndpointsOfLips = namedtuple("EndpointsOfLips",
                               ["left_endpoint",

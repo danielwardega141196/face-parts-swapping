@@ -69,10 +69,10 @@ class GetEndpointsOfLips:
         both_lips = face_landmarks["top_lip"] + face_landmarks["bottom_lip"]
 
         # Of all the points regarding lips we choose the leftmost point.
-        the_leftmost_point_of_lips = find_endpoint(list_of_coordinates=both_lips,
+        the_leftmost_point_of_lips = find_endpoint(coordinates=both_lips,
                                                    mode="LEFT")
         # Of all the points regarding lips we choose the rightmost point.
-        the_rightmost_point_of_lips = find_endpoint(list_of_coordinates=both_lips,
+        the_rightmost_point_of_lips = find_endpoint(coordinates=both_lips,
                                                     mode="RIGHT")
 
         return the_leftmost_point_of_lips, the_rightmost_point_of_lips
