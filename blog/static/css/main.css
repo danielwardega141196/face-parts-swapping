@@ -1,3 +1,19 @@
+body {
+    background-color: black;
+}
+.navbar{
+    background-color: black!important
+}
+[data-nav-button] {
+    outline:none!important;
+    font-size: 1em;
+
+}
+.navbar-brand{
+    margin-right:0;
+    text-align: center;
+}
+
 @font-face {
     font-family: "Love";
     src: url('../Love.otf') format("opentype");;
@@ -52,9 +68,7 @@
     border-radius: 50%;
     border: 0.5rem solid white;
 }
-html,body {
-    height: 100%;
-}
+
 .h-60 {
     height:60%!important;
 }
@@ -196,7 +210,7 @@ html,body {
        outline-width: 0.45em;
        outline-color: rgba(255,255,255,0.20);
    }
-   .sticky-nav{
+   .nav-div{
        position: sticky;
        top: 0;
        width: 100%;
@@ -216,7 +230,7 @@ html,body {
        outline-width: 0.45em;
        outline-color: rgba(255,255,255,0.20);
    }
-   .sticky-nav{
+   .nav-div{
        position: sticky;
        top: 0;
        width: 100%;

@@ -2,15 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
     <title>Swap Your Face Parts!</title>
-    <link rel="shortcut icon" href="{% static 'imgs/tab-icon.jpg' %}">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link href="{% static 'imgs/tab-icon.jpg' %}" rel="shortcut icon">
+    <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" rel="stylesheet">
 
-    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link href="{% static 'css/animate.css' %}" rel="stylesheet">
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/shining.css' %}" rel="stylesheet" type="text/css"/>
+
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
@@ -18,6 +21,41 @@
     <script src="{% static 'js/shine/shine.js' %}"></script>
     <script src="{% static 'js/shine/jquery.shiningImage.js' %}"></script>
     <script src="{% static 'js/shine/jquery.shiningImage.min.js' %}"></script>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/shining.css' %}"/>
+
+    <script src="{% static 'js/anime.min.js' %}"></script>
 </head>
+
+<body>
+<div class="container nav-div">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <div class="d-md-none d-sm-block d-block w-100">
+            <div class="row w-100">
+                <div class="navbar-brand col-sm-7 offset-sm-2 col-7 offset-2">
+                    PART OF FACE
+                </div>
+                <div class="col-sm-3 col-3">
+                    <button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
+                            class="navbar-toggler"
+                            data-nav-button data-target="#navbarCollapse" data-toggle="collapse" type="button">
+                        <span class="navbar-toggler-icon navbar-active-icon" data-navbar-active-icon></span>
+                        <span class="navbar-toggler-icon navbar-inactive-icon" data-navbar-inactive-icon
+                              style="display: none;"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="row w-100 justify-content-sm-around justify-content-around" style="margin: 0;">
+                <button class="col-md-5 col-sm-9 col-9 choose-button-block choose-button btn btn-outline-dark"
+                        data-part-of-face="lips">LIPS
+                </button>
+                <button class="col-md-5 col-sm-9 col-9 choose-button btn btn-outline-dark" data-part-of-face="nose">
+                    NOSE
+                </button>
+            </div>
+        </div>
+    </nav>
+</div>
+
+</body>
+</html>
