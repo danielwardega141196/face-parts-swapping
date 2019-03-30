@@ -57,5 +57,111 @@
     </nav>
 </div>
 
+<div class="container-fluid scene-with-choices">
+    <div class="container">
+        <div class="d-md-block d-sm-none d-none">
+            <div class="row w-100 justify-content-md-around" style="margin: 0;">
+                <div class="col-md-10 ml15 initial-swap-text-md" style="margin-top: 2.5%;">
+                    <span class="word">SWAP</span>
+                    <span class="word">YOUR</span>
+                    <span class="word" data-part-of-face-text>LIPS</span>
+                </div>
+                <div class="col-md-5">
+                    <div class="row justify-content-md-around">
+                        <div class="col-md-11 center-hori-vert black-normal-text-md" style="margin-top: 3%;">
+                            YOUR PHOTO
+                        </div>
+                        <div class="col-md-11 btn btn-outline-dark black-normal-text-md user-photo-btn-md"
+                             data-correct-photo
+                             style="margin-top: 3%;">
+                            SEE CORRECT PHOTO
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="row justify-content-md-around">
+                        <div class="col-md-11 center-hori-vert black-normal-text-md" data-part-of-face-text
+                             style="margin-top: 3%;">
+                            LIPS
+                        </div>
+                        <div class="col-md-11 btn btn-outline-dark black-normal-text-md want-to-have"
+                             style="margin-top: calc(3% + 1px); margin-bottom: 1px;">
+                            YOU WANT TO HAVE
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="row justify-content-md-around" style="margin-top: 2%;">
+                        <div class="col-md-5 d-md-flex align-items-md-center justify-content-md-center user-photo-div-md">
+                            <img class="rounded-circle user-photo-md" data-user-input-photo
+                                 src="{% static 'imgs/examle_user_photo.png' %}">
+                        </div>
+                        <div class="col-md-5 d-md-flex align-items-md-center justify-content-md-center user-photo-div-md">
+                            <img class="rounded-circle chosen-photo-md" data-chosen-example-face
+                                 src="{% static 'imgs/examle_part_of_face.png' %}">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="row justify-content-md-around">
+                        <form id="data-form" novalidate style="display: none;">
+                            <input accept="image/*" id="main-input" name="pic" required type="file" type="file"/>
+                            <input id="main-submit" type="submit">
+                        </form>
+                        <label class="col-md-11 btn btn-outline-dark black-normal-text-md user-photo-btn-md"
+                               for="main-input"
+                               style="margin-top: 3%;">CHOOSE A FILE</label>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="row justify-content-md-around">
+                        <div class="col-md-11 btn btn-outline-dark black-normal-text-md chevron-down-div" style="margin-top: 1.25%;
+                        margin-bottom: 1px;">
+                            <span class="fa fa-chevron-down animate-continuously animated pulse"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-md-none d-sm-block d-block">
+            <div class="row w-100 justify-content-sm-around justify-content-around" style="margin: 0;">
+                <div class="col-sm-10 col-10 ml15 initial-swap-text-sm" style="margin-top: 2.5%;">
+                    <span class="word">SWAP</span>
+                    <span class="word">YOUR</span>
+                    <span class="word" data-part-of-face-text>LIPS</span>
+                </div>
+                <div class="col-sm-12 col-12">
+                    <div class="row justify-content-sm-around justify-content-around">
+                        <div class="col-sm-9 col-9 center-hori-vert main-font-sm" style="margin-top: 3%;">
+                            YOUR PHOTO
+                        </div>
+                        <div class="col-sm-10 col-10 btn btn-outline-dark font-sm user-photo-btn-sm animate-continuously animated pulse"
+                             data-correct-photo
+                             style="margin-top: 3%;">
+                            SEE CORRECT PHOTO
+                        </div>
+                        <div class="col-sm-11 col-11 d-sm-flex d-flex align-items-sm-center align-items-center justify-content-sm-center justify-content-center"
+                             style="margin-top: 6%;height: 235px;">
+                            <img class="rounded-circle user-photo-sm" data-user-input-photo
+                                 src="{% static 'imgs/examle_user_photo.png' %}">
+                        </div>
+                        <form id="data-form" novalidate style="display: none;">
+                            <input accept="image/*" id="main-input" name="pic" required type="file" type="file"/>
+                            <input id="main-submit" type="submit">
+                        </form>
+                        <label class="col-sm-10 col-10 btn btn-outline-dark font-sm user-photo-btn-sm choose-photo-sm animate-continuously animated pulse"
+                               for="main-input"
+                               style="margin-top: 6%;">CHOOSE A FILE</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 </body>
 </html>

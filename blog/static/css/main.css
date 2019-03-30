@@ -13,7 +13,29 @@ body {
     margin-right:0;
     text-align: center;
 }
+.initial-swap-text-md{
+    text-align: center;
+    font-size: 1.75em;
+    font-weight:600;
+    font-style:italic;
+    color: black;
+}
+.initial-swap-text-sm{
+    text-align: center;
+    font-size: 1.25em;
+    font-weight:600;
+    font-style:italic;
+    color: black;
+}
 
+[data-part-of-face-text]{
+    text-transform: uppercase;
+}
+.want-to-have{
+    cursor: auto;
+    border: 0;
+    background-color: transparent !important;
+}
 @font-face {
     font-family: "Love";
     src: url('../Love.otf') format("opentype");;
@@ -28,6 +50,16 @@ body {
     font-family: Love !important;
     box-shadow: none!important;
 }
+.user-photo-div-md{
+    height: 450px;
+}
+.chevron-down-div{
+    font-size: 2.9em!important;
+    cursor: auto;
+    border: 0;
+    background-color: transparent !important;
+}
+
 .user-photo-btn-md{
     color: #111719!important;
     border-color: #111719!important;
@@ -46,6 +78,11 @@ body {
     color: #111719!important;
     border-color: #111719!important;
     background-color: transparent!important;
+}
+.choose-photo-sm{
+
+    border-width: 0.15em;
+    border-color: rgba(0,0,0,0.25);
 }
 .choose-button-block {
     color: rgba(255,255,255,0.5)!important;
