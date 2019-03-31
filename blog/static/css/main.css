@@ -254,6 +254,16 @@ body {
        padding: 0;
        z-index: 999;
    }
+   [data-prev-face] > span{
+       font-size:1.5em;
+       margin: auto auto !important;
+       color: white !important;
+   }
+   [data-next-face] > span{
+       font-size:1.5em;
+       margin: auto auto !important;
+       color: white !important;
+   }
 }
 @media (min-width: 576px) and (max-width: 767.98px) {
     .choose-button {
@@ -279,6 +289,17 @@ body {
        margin-right:auto!important;
        margin-left:auto!important;
    }
+   [data-prev-face] > span{
+       font-size:1.5em;
+       margin: auto auto !important;
+       color: white !important;
+   }
+   [data-next-face] > span{
+       font-size:1.5em;
+       margin: auto auto !important;
+       color: white !important;
+   }
+
 }
 @media (min-width: 768px){
     .choose-button {
@@ -295,6 +316,12 @@ body {
         outline-style: solid;
         outline-width: 0.7em;
         outline-color: white;
+    }
+    [data-prev-face] > span{
+    font-size:1.75em;
+    }
+    [data-next-face] > span{
+        font-size:1.75em;
     }
 }
 .example-face-btns-md{
