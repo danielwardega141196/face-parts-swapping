@@ -9,7 +9,6 @@ class GetEndpointsOfLips:
 
     @staticmethod
     def get_top_endpoint_of_lips(face_landmarks):
-
         """
         :param face_landmarks: landmarks of a single face generated
         by the function 'face_landmarks' from module named 'face_recognition'
@@ -33,7 +32,6 @@ class GetEndpointsOfLips:
 
     @staticmethod
     def get_bottom_endpoint_of_lips(face_landmarks):
-
         """
         :param face_landmarks: landmarks of a single face generated
         by the function 'face_landmarks' from module named 'face_recognition'
@@ -77,7 +75,6 @@ class GetEndpointsOfLips:
 
         return the_leftmost_point_of_lips, the_rightmost_point_of_lips
 
-
     @staticmethod
     def get_left_endpoint_of_lips(face_landmarks):
         """
@@ -88,7 +85,8 @@ class GetEndpointsOfLips:
         :return: coordinates of the left endpoint of lips
         :rtype: list - [] or tuple - ()
         """
-        the_leftmost_point_of_lips, the_rightmost_point_of_lips = GetEndpointsOfLips.get_the_leftmost_and_the_rightmost_points_of_lips(face_landmarks=face_landmarks)
+        the_leftmost_point_of_lips, the_rightmost_point_of_lips = GetEndpointsOfLips.get_the_leftmost_and_the_rightmost_points_of_lips(
+            face_landmarks=face_landmarks)
         left_endpoint_of_lips = point_along_a_line_distanced_from_another_point(A=the_leftmost_point_of_lips,
                                                                                 B=the_rightmost_point_of_lips,
                                                                                 offset_from_A=
@@ -106,8 +104,8 @@ class GetEndpointsOfLips:
         :return: coordinates of the right endpoint of lips
         :rtype: list - [] or tuple - ()
         """
-
-        the_leftmost_point_of_lips, the_rightmost_point_of_lips = GetEndpointsOfLips.get_the_leftmost_and_the_rightmost_points_of_lips(face_landmarks=face_landmarks)
+        the_leftmost_point_of_lips, the_rightmost_point_of_lips = GetEndpointsOfLips.get_the_leftmost_and_the_rightmost_points_of_lips(
+            face_landmarks=face_landmarks)
         right_endpoint_of_lips = point_along_a_line_distanced_from_another_point(A=the_rightmost_point_of_lips,
                                                                                  B=the_leftmost_point_of_lips,
                                                                                  offset_from_A=
@@ -128,10 +126,10 @@ class GetEndpointsOfLips:
         with the following fields: 'left_endpoint', 'top_endpoint', 'right_endpoint', 'bottom_endpoint'
         """
 
-        left_endpoint_of_lips = EndpointsOfLips.get_left_endpoint_of_lips(face_landmarks=face_landmarks)
-        top_endpoint_of_lips = EndpointsOfLips.get_top_endpoint_of_lips(face_landmarks=face_landmarks)
-        right_endpoint_of_lips = EndpointsOfLips.get_right_endpoint_of_lips(face_landmarks=face_landmarks)
-        bottom_endpoint_of_lips = EndpointsOfLips.get_bottom_endpoint_of_lips(face_landmarks=face_landmarks)
+        left_endpoint_of_lips = GetEndpointsOfLips.get_left_endpoint_of_lips(face_landmarks=face_landmarks)
+        top_endpoint_of_lips = GetEndpointsOfLips.get_top_endpoint_of_lips(face_landmarks=face_landmarks)
+        right_endpoint_of_lips = GetEndpointsOfLips.get_right_endpoint_of_lips(face_landmarks=face_landmarks)
+        bottom_endpoint_of_lips = GetEndpointsOfLips.get_bottom_endpoint_of_lips(face_landmarks=face_landmarks)
 
         return EndpointsOfLips(left_endpoint=left_endpoint_of_lips,
                                top_endpoint=top_endpoint_of_lips,

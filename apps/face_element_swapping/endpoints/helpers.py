@@ -11,8 +11,9 @@ def point_dividing_a_line_segment(A, B, offset_from_A):
     :type B: list - [] or tuple - ()
     :param offset_from_A: percent of the Euclidean distance between A and B where 0 % is equal to 0 and 100% is equal to 1.
     :type offset_from_A: float
-    :return: Coordinates of point along a line from A to B.
-    The point is away from point A by the length equal to : (Euclidean distance between A and B) * offset_from_A
+    :return: coordinates of point along a line from A to B.
+    The point is located between points A and B
+    and is away from point A by the length equal to : (Euclidean distance between A and B) * offset_from_A
     A--C------B
     :rtype tuple - ()
     """
@@ -72,11 +73,10 @@ def point_along_a_line_distanced_from_another_point(A, B, offset_from_A):
     :param offset_from_A: percent of the Euclidean distance between A and B where 0 % is equal to 0 and 100% is equal to 1.
     :type offset_from_A: float
     :return coordinates of the point on same straight.
-    The point is away from point A by the length equal to : (Euclidean distance between A and B) * offset_from_A
+    The point is located next to point A and is away from it by the length equal to : (Euclidean distance between A and B) * offset_from_A
     C--A------B
     :rtype tuple - ()
     """
-
     point_inside_a_line = point_dividing_a_line_segment(A=A,
                                                         B=B,
                                                         offset_from_A=offset_from_A)
@@ -87,6 +87,12 @@ def point_along_a_line_distanced_from_another_point(A, B, offset_from_A):
 
 
 
-def get_faces_landmarks(RGB_numpy_array):
-    face_landmarks_list = face_landmarks(RGB_numpy_array)
+def get_faces_landmarks(rgb_array):
+    """
+    :param rgb_array: an RGB image converted into a numpy array (the array has following shape(y, x, 3))
+    :type rgb_array: numpy.ndarray (https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html)
+    :return: a list of dictionaries of face feature locations (eyes, nose, etc)
+    :rtype list - []
+    """
+    face_landmarks_list = face_landmarks(rgb_array)
     return face_landmarks_list

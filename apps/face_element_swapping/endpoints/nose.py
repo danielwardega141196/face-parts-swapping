@@ -167,6 +167,3 @@ class GetEndpointsOfANose:
             nose_endpoints["six_endpoints"] = GetEndpointsOfANose.get_six_endpoints(face_landmarks=face_landmarks)
 
         return nose_endpoints
-
-
-get_nose_endpoints = GetEndpointsOfANose.get_endpoints_of_a_nose
