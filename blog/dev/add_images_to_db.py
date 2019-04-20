@@ -4,27 +4,23 @@
 import json
 import logging
 import os
-
 import sys
 
-sys.path.append('./')
-
 import django
-
-django.setup()
-
 from PIL import Image
 
-from blog.settings import ACCEPTABLE_FILE_EXTENSIONS, LANDMARKS_FUNCTIONS, \
-    LOCATION_OF_DJANGO_SETTINGS_MODULE, DIRECTORIES_WITH_FACES
+# loading all necessary dependencies
+sys.path.append('./')
+os.environ["DJANGO_SETTINGS_MODULE"] = "myproject.settings"
+django.setup()
 
-from apps.face_element_swapping import get_faces_landmarks
+from blog.settings import ACCEPTABLE_FILE_EXTENSIONS, \
+    LANDMARKS_FUNCTIONS, DIRECTORIES_WITH_FACES
 
-from blog.helpers import convert_pil_to_base64, replace_special_signs, check_if_row_exists_in_db, \
+from blog.helpers import convert_img_to_base64, replace_special_signs, \
     convert_rgb_array_to_text, convert_pil_to_np_array
-from blog.models import DB_OBJECTS
-
-os.environ["DJANGO_SETTINGS_MODULE"] = LOCATION_OF_DJANGO_SETTINGS_MODULE
+from blog.db_func import DBFunc
+from apps.face_element_swapping import get_faces_landmarks
 
 # Choosing the right part of the face for which we look for photos
 # Currently, the following parts of the face are available:
@@ -36,11 +32,10 @@ PART_OF_FACE = "lips"
 
 class SaveFacesIntoDB:
 
-    def __init__(self, part_of_face, directory_containing_imgs, db_object):
+    def __init__(self, part_of_face, directory_containing_imgs):
 
         self._part_of_face = part_of_face
         self._directory_containing_imgs = directory_containing_imgs
-        self._db_object = db_object
         self._current_image = None
         self._pil = None
         self._image_in_base64 = None
@@ -50,7 +45,7 @@ class SaveFacesIntoDB:
     def get_names_of_image_files(directory_containing_imgs):
         """
         :param directory_containing_imgs: path to the directory which contains
-               photos concerning particular part of face(part_of_face).
+               photos concerning particular part of the face(part_of_face).
         :type directory_containing_imgs: string - str
         :return: list containing paths to images with a acceptable extension(ACCEPTABLE_FILE_EXTENSIONS)
         :rtype: list - []
@@ -80,38 +75,42 @@ class SaveFacesIntoDB:
             face_landmarks = LANDMARKS_FUNCTIONS[self._part_of_face](face_landmarks)
             face_landmarks = json.dumps({self._part_of_face: face_landmarks})
 
-            self._db_object.objects.create(photo_name=self._image_name,
-                                           photo_in_base64=self._image_in_base64,
-                                           rgb_array=convert_rgb_array_to_text(rgb_array=rgb_array),
-                                           face_landmarks=face_landmarks)
-            info_msg = "Facial landmarks of the photo named {photo_name} " \
-                       "have been successfully detected and saved in the database.". \
+            DBFunc.save_example_photo(part_of_face=self._part_of_face,
+                                      photo_in_base64=self._image_in_base64,
+                                      photo_name=self._image_name,
+                                      rgb_array=convert_rgb_array_to_text(rgb_array=rgb_array),
+                                      face_landmarks=face_landmarks)
+
+            info_msg = "Facial landmarks of the photo named '{photo_name}' " \
+                       "have been successfully detected and saved into the database.". \
                 format(photo_name=self._image_name)
             print(info_msg)
             logging.info(info_msg)
         elif number_of_detected_faces == 0:
-            warn_msg = "No faces were detected on the photo named: {photo_name}.". \
+            warn_msg = "No faces were detected on the photo named: '{photo_name}'.". \
                 format(photo_name=self._image_name)
             print(warn_msg)
             logging.warning(warn_msg)
         else:
             warn_msg = "Too many faces (number_of_detected_faces) were detected " \
-                       "on the photo named: {photo_name}.". \
+                       "on the photo named: '{photo_name}'.". \
                 format(number_of_detected_faces=number_of_detected_faces,
                        photo_name=self._image_name)
             print(warn_msg)
             logging.warning(warn_msg)
 
     def _process_single_image(self):
+
         """
             This function process an image.
             If the image hadn't been previously saved into the database
             the function would search for the facial landmarks and then save the image into the database,
             otherwise only a message is displayed.
         """
-        if not check_if_row_exists_in_db(db_object=self._db_object,
-                                         photo_name=self._image_name,
-                                         photo_in_base64=self._image_in_base64):
+        if not DBFunc.example_photo_exists(part_of_face=self._part_of_face,
+                                           photo_name=self._image_name,
+                                           photo_in_base64=self._image_in_base64):
+
             rgb_array = convert_pil_to_np_array(pil=self._pil)
             face_landmarks = get_faces_landmarks(rgb_array=rgb_array)
 
@@ -121,7 +120,7 @@ class SaveFacesIntoDB:
                                             face_landmarks=face_landmarks[0],
                                             rgb_array=rgb_array)
         else:
-            info_msg = "Facial landmarks of the photo named {photo_name} " \
+            info_msg = "Facial landmarks of the photo named '{photo_name}' " \
                        "have been detected and saved previously.".format(photo_name=self._image_name)
             print(info_msg)
             logging.info(info_msg)
@@ -139,34 +138,30 @@ class SaveFacesIntoDB:
 
             # When we have the path to the file, we create 'PIL' object
             self._pil = Image.open(path_to_the_image)
-            self._image_in_base64 = convert_pil_to_base64(img=self._pil)
+            self._image_in_base64 = convert_img_to_base64(img=self._pil)
             self._image_name = replace_special_signs(file_name=self._current_image)
             self._process_single_image()
 
     @classmethod
-    def save_faces_into_db(cls, part_of_face, directory_containing_imgs, db_object):
+    def save_faces_into_db(cls, part_of_face, directory_containing_imgs):
         """
             This function enables to searching for images with human faces
             inside a specified directory(directory_containing_imgs).
-            Those images are converted to base64 as well as to np.array.
+            These images are converted to base64 as well as to np.array.
             For each image we detect the landmarks of the specified part of face (part_of_face).
-            Then we save all this data in the appropriate database(by using 'db_object').
+            Then we save all this data into the appropriate database table.
             :param part_of_face: a specific part of the face
             :type part_of_face: string - str
             :param directory_containing_imgs: Path to the directory which contains
             photos concerning particular part of face(part_of_face).
             :type directory_containing_imgs: string - str
-            :param db_object: class representing the database table of the specified part of face(part_of_face)
-            :type db_object: django.db.models.base.ModelBase
-            (https://docs.djangoproject.com/en/2.2/_modules/django/db/models/base/)
         """
         save_faces = cls(part_of_face=part_of_face,
-                         directory_containing_imgs=directory_containing_imgs,
-                         db_object=db_object)
+                         directory_containing_imgs=directory_containing_imgs)
+
         save_faces._save_faces_into_db()
 
 
 if __name__ == "__main__":
     SaveFacesIntoDB.save_faces_into_db(part_of_face=PART_OF_FACE,
-                                       directory_containing_imgs=DIRECTORIES_WITH_FACES[PART_OF_FACE],
-                                       db_object=DB_OBJECTS[PART_OF_FACE])
+                                       directory_containing_imgs=DIRECTORIES_WITH_FACES[PART_OF_FACE])
