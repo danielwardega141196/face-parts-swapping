@@ -1,3 +1,8 @@
+"""
+    This file contains objects which will store
+    endpoints of particular parts of a face.
+"""
+
 from collections import namedtuple
 
 FourEndpointsOfANose = namedtuple("FourEndpointsOfANose",
@@ -15,7 +20,7 @@ SixEndpointsOfANose = namedtuple("SixEndpointsOfANose",
                                  "middle_left_endpoint"])
 
 EndpointsOfLips = namedtuple("EndpointsOfLips",
-                              ["left_endpoint",
-                               "top_endpoint",
-                               "right_endpoint",
-                               "bottom_endpoint"])
+                            ["left_endpoint",
+                             "top_endpoint",
+                             "right_endpoint",
+                             "bottom_endpoint"])

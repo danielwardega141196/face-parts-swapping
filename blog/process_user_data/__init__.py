@@ -1,0 +1,1 @@
+from .swap_elements_of_face import ProcessUserPhoto

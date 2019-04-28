@@ -11,8 +11,9 @@ def point_dividing_a_line_segment(A, B, offset_from_A):
     :type B: list - [] or tuple - ()
     :param offset_from_A: percent of the Euclidean distance between A and B where 0 % is equal to 0 and 100% is equal to 1.
     :type offset_from_A: float
-    :return: Coordinates of point along a line from A to B.
-    The point is away from point A by the length equal to : (Euclidean distance between A and B) * offset_from_A
+    :return: coordinates of point along a line from A to B.
+    The point is located between points A and B
+    and is away from point A by the length equal to : (Euclidean distance between A and B) * offset_from_A
     A--C------B
     :rtype tuple - ()
     """
@@ -23,11 +24,10 @@ def point_dividing_a_line_segment(A, B, offset_from_A):
     return int(round(x)), int(round(y))
 
 
-def find_endpoint(coordinates,
-                  mode="TOP"):
-
+def find_endpoint(coordinates, mode):
     """
-    :param coordinates: list of tuple of coordinates in 2D Space ([(x, y),(x, y),(x, y)...] or ((x, y),(x, y),(x, y)...))
+    :param coordinates: list or tuple of coordinates in 2D Space.
+    (e.g. [(x, y),(x, y),(x, y)...] or ([x, y],[x, y],[x, y]...))
     :type coordinates: list - [] or tuple - ()
     :param mode: this parameter indicates which endpoint we look for.
     Allowed values of this parameter:
@@ -35,11 +35,22 @@ def find_endpoint(coordinates,
         "RIGHT": we look for the point with the maximum 'x' value
         "BOTTOM": we look for the point with the minimum 'y' value
         "TOP": we look for the point with the maximum 'y' value
+    All the above values are the keys of the TYPES_OF_ENDPOINTS dictionary.
     :type mode: string
     :return coordinates of the wanted endpoint
     :rtype list - [] or tuple - ()
+    :raises ValueError: if the passed mode ('mode') is not supported by this function.
+    (If the mode is not one of the keys of the TYPES_OF_ENDPOINTS dictionary.)
     """
-    endpoint_settings = TYPES_OF_ENDPOINTS.get(mode, TYPES_OF_ENDPOINTS["TOP"])
+
+    supported_modes = list(TYPES_OF_ENDPOINTS.keys())
+    if mode not in supported_modes:
+        supported_modes = ", ".join(map(lambda mode: "'" + mode + "'", supported_modes))
+        raise ValueError("The passed mode: '{mode}' is not supported by this function. "
+                         "The supported modes are: {supported_modes}.".format(mode=mode,
+                                                                              supported_modes=supported_modes))
+
+    endpoint_settings = TYPES_OF_ENDPOINTS[mode]
     index_of_a_coordinate = endpoint_settings["INDEX_OF_A_COORDINATE"]
     comparison_operator = endpoint_settings["COMPARSION_OPERATOR"]
 
@@ -72,11 +83,10 @@ def point_along_a_line_distanced_from_another_point(A, B, offset_from_A):
     :param offset_from_A: percent of the Euclidean distance between A and B where 0 % is equal to 0 and 100% is equal to 1.
     :type offset_from_A: float
     :return coordinates of the point on same straight.
-    The point is away from point A by the length equal to : (Euclidean distance between A and B) * offset_from_A
+    The point is located next to point A and is away from it by the length equal to : (Euclidean distance between A and B) * offset_from_A
     C--A------B
     :rtype tuple - ()
     """
-
     point_inside_a_line = point_dividing_a_line_segment(A=A,
                                                         B=B,
                                                         offset_from_A=offset_from_A)
@@ -86,7 +96,12 @@ def point_along_a_line_distanced_from_another_point(A, B, offset_from_A):
     return point_outside_a_line
 
 
-
-def get_faces_landmarks(RGB_numpy_array):
-    face_landmarks_list = face_landmarks(RGB_numpy_array)
+def get_faces_landmarks(rgb_array):
+    """
+    :param rgb_array: an RGB image converted into a numpy array (the array has following shape(y, x, 3))
+    :type rgb_array: numpy.ndarray (https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html)
+    :return: a list of dictionaries of face feature locations (eyes, nose, etc)
+    :rtype list - []
+    """
+    face_landmarks_list = face_landmarks(rgb_array)
     return face_landmarks_list
