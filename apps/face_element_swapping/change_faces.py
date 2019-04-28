@@ -6,7 +6,7 @@ from .helpers import fill_pixel_if_belongs_to_polygon, \
     get_rectangle_in_an_image
 from .settings import DEFAULT_CLASSIFIER, \
     PERCENT_OF_NEAREST_NEIGHBOURS, \
-    MASK_FILLING_COLOR
+    RGB_MASK_FILLING_COLOR
 
 
 class ChangeFaceElement:
@@ -301,7 +301,7 @@ class ChangeFaceElement:
                                          polygon=self.dst_polygon,
                                          row_idx=row_idx,
                                          column_idx=column_idx,
-                                         pixel_value=MASK_FILLING_COLOR)
+                                         pixel_value=RGB_MASK_FILLING_COLOR)
 
     def _fill_polygon_in_an_image(self):
         """
@@ -387,7 +387,7 @@ class ChangeFaceElement:
         """
         This function moves the source polygon(src_polygon) contained in source image(src_rgb_array)
         to the destination polygon(dst_polygon) contained in destination image(dst_rgb_array).
-        If dst_cut_field is not None the output image has only those new pixels that are contained in 'dst_cut_field'.
+        If dst_cut_field is not None the output image has only these new pixels that are contained in 'dst_cut_field'.
         :param src_rgb_array: an RGB source image converted into a numpy array (the array has following shape(y, x, 3))
         :type src_rgb_array: numpy.ndarray (https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html)
         :param dst_rgb_array: an RGB destination image converted into a numpy array (the array has following shape(y, x, 3))

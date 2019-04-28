@@ -24,11 +24,10 @@ def point_dividing_a_line_segment(A, B, offset_from_A):
     return int(round(x)), int(round(y))
 
 
-def find_endpoint(coordinates,
-                  mode="TOP"):
-
+def find_endpoint(coordinates, mode):
     """
-    :param coordinates: list of tuple of coordinates in 2D Space ([(x, y),(x, y),(x, y)...] or ((x, y),(x, y),(x, y)...))
+    :param coordinates: list or tuple of coordinates in 2D Space.
+    (e.g. [(x, y),(x, y),(x, y)...] or ([x, y],[x, y],[x, y]...))
     :type coordinates: list - [] or tuple - ()
     :param mode: this parameter indicates which endpoint we look for.
     Allowed values of this parameter:
@@ -36,11 +35,22 @@ def find_endpoint(coordinates,
         "RIGHT": we look for the point with the maximum 'x' value
         "BOTTOM": we look for the point with the minimum 'y' value
         "TOP": we look for the point with the maximum 'y' value
+    All the above values are the keys of the TYPES_OF_ENDPOINTS dictionary.
     :type mode: string
     :return coordinates of the wanted endpoint
     :rtype list - [] or tuple - ()
+    :raises ValueError: if the passed mode ('mode') is not supported by this function.
+    (If the mode is not one of the keys of the TYPES_OF_ENDPOINTS dictionary.)
     """
-    endpoint_settings = TYPES_OF_ENDPOINTS.get(mode, TYPES_OF_ENDPOINTS["TOP"])
+
+    supported_modes = list(TYPES_OF_ENDPOINTS.keys())
+    if mode not in supported_modes:
+        supported_modes = ", ".join(map(lambda mode: "'" + mode + "'", supported_modes))
+        raise ValueError("The passed mode: '{mode}' is not supported by this function. "
+                         "The supported modes are: {supported_modes}.".format(mode=mode,
+                                                                              supported_modes=supported_modes))
+
+    endpoint_settings = TYPES_OF_ENDPOINTS[mode]
     index_of_a_coordinate = endpoint_settings["INDEX_OF_A_COORDINATE"]
     comparison_operator = endpoint_settings["COMPARSION_OPERATOR"]
 
@@ -84,7 +94,6 @@ def point_along_a_line_distanced_from_another_point(A, B, offset_from_A):
     point_outside_a_line = get_point_relative_to_another_point(endpoint=point_inside_a_line,
                                                                midpoint=A)
     return point_outside_a_line
-
 
 
 def get_faces_landmarks(rgb_array):

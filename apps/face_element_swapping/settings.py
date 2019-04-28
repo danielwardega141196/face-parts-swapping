@@ -9,4 +9,4 @@ CLASSIFIERS = {
 }
 DEFAULT_CLASSIFIER = CLASSIFIERS["NearestNeighbors"]
 
-MASK_FILLING_COLOR = np.array([255, 255, 255], dtype=np.uint8)
+RGB_MASK_FILLING_COLOR = np.array([255, 255, 255], dtype=np.uint8)
