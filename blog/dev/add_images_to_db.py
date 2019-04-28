@@ -100,7 +100,6 @@ class SaveFacesIntoDB:
             logging.warning(warn_msg)
 
     def _process_single_image(self):
-
         """
             This function process an image.
             If the image hadn't been previously saved into the database
