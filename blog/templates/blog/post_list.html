@@ -2,124 +2,148 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,
+                                                       maximum-scale=1.0,
+                                                       user-scalable=0,
+                                                       shrink-to-fit=no">
     <title>Swap Your Face Parts!</title>
     <link href="{% static 'imgs/tab-icon.jpg' %}" rel="shortcut icon">
     <link crossorigin="anonymous" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
           integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" rel="stylesheet">
 
     <link href="{% static 'css/animate.css' %}" rel="stylesheet">
-    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-    <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/shining.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/hover.css' %}" rel="stylesheet" type="text/css"/>
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css"/>
 
     <script src="{% static 'js/jquery.min.js' %}"></script>
     <script src="{% static 'js/popper.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js' %}"></script>
+
+    <script src="{% static 'js/anime.min.js' %}"></script>
 
     <script src="{% static 'js/shine/shine.js' %}"></script>
     <script src="{% static 'js/shine/jquery.shiningImage.js' %}"></script>
     <script src="{% static 'js/shine/jquery.shiningImage.min.js' %}"></script>
 
-    <script src="{% static 'js/anime.min.js' %}"></script>
 </head>
 
 <body>
-<div class="container nav-div">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <div class="d-md-none d-sm-block d-block w-100">
-            <div class="row w-100">
-                <div class="navbar-brand col-sm-7 offset-sm-2 col-7 offset-2">
-                    PART OF FACE
+<div class="container-fluid nav-background">
+    <div class="nav-div">
+        <nav data-nav-inside class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="d-md-none d-sm-block d-block w-100">
+                <div class="row w-100">
+                    <div class="navbar-brand col-sm-7 offset-sm-2 col-7 offset-2">
+                        PART OF FACE
+                    </div>
+                    <div class="col-sm-3 col-3">
+                        <button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
+                                class="navbar-toggler"
+                                data-nav-button data-target="#navbarCollapse" data-toggle="collapse" type="button">
+                            <span class="navbar-toggler-icon navbar-inactive-icon" data-navbar-inactive-icon
+                                  style="display: none;"></span>
+                            <span class="navbar-toggler-icon navbar-active-icon" data-navbar-active-icon></span>
+                        </button>
+                    </div>
                 </div>
-                <div class="col-sm-3 col-3">
-                    <button aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"
-                            class="navbar-toggler"
-                            data-nav-button data-target="#navbarCollapse" data-toggle="collapse" type="button">
-                        <span class="navbar-toggler-icon navbar-active-icon" data-navbar-active-icon></span>
-                        <span class="navbar-toggler-icon navbar-inactive-icon" data-navbar-inactive-icon
-                              style="display: none;"></span>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="row w-100 justify-content-md-center justify-content-sm-around justify-content-around"
+                     style="margin: 0;">
+                    <button class="col-md-4 col-sm-9 col-9 choose-button btn btn-outline-dark margin-right hvr-rectangle-in"
+                            data-part-of-face="lips">LIPS
+                    </button>
+                    <button class="col-md-4 col-sm-9 col-9 choose-button btn btn-outline-dark margin-left hvr-rectangle-in"
+                            data-part-of-face="nose">
+                        NOSE
                     </button>
                 </div>
             </div>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="row w-100 justify-content-sm-around justify-content-around" style="margin: 0;">
-                <button class="col-md-5 col-sm-9 col-9 choose-button-block choose-button btn btn-outline-dark"
-                        data-part-of-face="lips">LIPS
-                </button>
-                <button class="col-md-5 col-sm-9 col-9 choose-button btn btn-outline-dark" data-part-of-face="nose">
-                    NOSE
-                </button>
-            </div>
-        </div>
-    </nav>
+        </nav>
+    </div>
 </div>
-
 <div class="container-fluid scene-with-choices">
     <div class="container">
         <div class="d-md-block d-sm-none d-none">
-            <div class="row w-100 justify-content-md-around" style="margin: 0;">
-                <div class="col-md-10 ml15 initial-swap-text-md" style="margin-top: 2.5%;">
+            <div class="row w-100 justify-content-md-around padding-0-1" style="margin: 0;">
+                <div class="col-md-10 ml15 initial-swap-text-md" style="margin-top: 1%;">
                     <span class="word">SWAP</span>
                     <span class="word">YOUR</span>
                     <span class="word" data-part-of-face-text>LIPS</span>
                 </div>
-                <div class="col-md-5">
-                    <div class="row justify-content-md-around">
-                        <div class="col-md-11 center-hori-vert black-normal-text-md" style="margin-top: 3%;">
-                            YOUR PHOTO
+                <div class="col-md-12">
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-4" style="margin-right: 3%;">
+                            <div class="row justify-content-md-around">
+                                <div class="col-md-11 center-hori-vert black-normal-text-md" style="margin-top: 3%;">
+                                    YOUR PHOTO
+                                </div>
+                                <div class="col-md-11 btn btn-outline-dark black-normal-text-md user-photo-btn-md"
+                                     data-correct-photo
+                                     style="margin-top: 4%;">
+                                    SEE CORRECT PHOTO
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-11 btn btn-outline-dark black-normal-text-md user-photo-btn-md"
-                             data-correct-photo
-                             style="margin-top: 3%;">
-                            SEE CORRECT PHOTO
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="row justify-content-md-around">
-                        <div class="col-md-11 center-hori-vert black-normal-text-md" data-part-of-face-text
-                             style="margin-top: 3%;">
-                            LIPS
-                        </div>
-                        <div class="col-md-11 btn btn-outline-dark black-normal-text-md want-to-have"
-                             style="margin-top: calc(3% + 1px); margin-bottom: 1px;">
-                            YOU WANT TO HAVE
-                        </div>
+                        <div class="col-md-4" style="margin-left: 3%;">
+                            <div class="row justify-content-md-around">
+                                <div class="col-md-11 center-hori-vert black-normal-text-md" data-part-of-face-text
+                                     style="margin-top: 3%;">
+                                    LIPS
+                                </div>
+                                <div data-want-to-have class="col-md-11 btn btn-outline-dark black-normal-text-md want-to-have disabled"
+                                     style="margin-top: calc(4% + 1px); margin-bottom: 1px;">
+                                    YOU WANT TO
+                                </div>
 
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="col-md-12">
-                    <div class="row justify-content-md-around" style="margin-top: 2%;">
-                        <div class="col-md-5 d-md-flex align-items-md-center justify-content-md-center user-photo-div-md">
-                            <img class="rounded-circle user-photo-md" data-user-input-photo
-                                 src="{% static 'imgs/examle_user_photo.png' %}">
+                    <div class="row justify-content-md-center" style="margin-top: 2%;">
+                        <div class="col-md-4" style="margin-right: 3%;">
+                            <div class="row justify-content-md-around">
+                                <div class="col-md-12 d-md-flex align-items-md-center justify-content-md-center user-photo-div-md">
+                                    <img class="rounded-circle user-photo-md" data-user-input-photo
+                                         src="{% static 'imgs/example_user_photo.png' %}">
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-5 d-md-flex align-items-md-center justify-content-md-center user-photo-div-md">
-                            <img class="rounded-circle chosen-photo-md" data-chosen-example-face
-                                 src="{% static 'imgs/examle_part_of_face.png' %}">
+                        <div class="col-md-4" style="margin-left: 3%;">
+                            <div class="row justify-content-md-around">
+                                <div class="col-md-12 d-md-flex align-items-md-center justify-content-md-center user-photo-div-md">
+                                    <img class="rounded-circle chosen-photo-md" data-chosen-example-face
+                                         src="{% static 'imgs/example_part_of_face.png' %}">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <div class="row justify-content-md-around">
-                        <form id="data-form" novalidate style="display: none;">
-                            <input accept="image/*" id="main-input" name="pic" required type="file" type="file"/>
-                            <input id="main-submit" type="submit">
-                        </form>
-                        <label class="col-md-11 btn btn-outline-dark black-normal-text-md user-photo-btn-md"
-                               for="main-input"
-                               style="margin-top: 3%;">CHOOSE A FILE</label>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="row justify-content-md-around">
-                        <div class="col-md-11 btn btn-outline-dark black-normal-text-md chevron-down-div" style="margin-top: 1.25%;
-                        margin-bottom: 1px;">
-                            <span class="fa fa-chevron-down animate-continuously animated pulse"></span>
+                <div class="col-md-12">
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-4" style="margin-right: 3%;">
+                            <div class="row justify-content-md-around">
+                                <form id="data-form" novalidate style="display: none;">
+                                    <input id="main-input" name="pic" required type="file"/>
+                                    <input id="main-submit" type="submit">
+                                </form>
+                                <label class="col-md-11 btn btn-outline-dark black-normal-text-md user-photo-btn-md"
+                                       for="main-input"
+                                       style="margin-top: 3%;">CHOOSE A FILE</label>
+                            </div>
+                        </div>
+                        <div class="col-md-4" style="margin-left: 3%;">
+                            <div class="row justify-content-md-around">
+                                <div class="col-md-11 btn btn-outline-dark black-normal-text-md chevron-down-div disabled"
+                                     style="margin-top: 1.25%;
+                                margin-bottom: 1px;">
+                                    <span class="fa fa-chevron-down animate-continuously animated pulse"></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -128,60 +152,72 @@
 
         <div class="d-md-none d-sm-block d-block">
             <div class="row w-100 justify-content-sm-around justify-content-around" style="margin: 0;">
-                <div class="col-sm-10 col-10 ml15 initial-swap-text-sm" style="margin-top: 2.5%;">
+                <div class="col-sm-12 col-12 ml15 initial-swap-text-sm" style="margin-top: 2.5%;">
                     <span class="word">SWAP</span>
                     <span class="word">YOUR</span>
                     <span class="word" data-part-of-face-text>LIPS</span>
                 </div>
                 <div class="col-sm-12 col-12">
                     <div class="row justify-content-sm-around justify-content-around">
-                        <div class="col-sm-9 col-9 center-hori-vert main-font-sm" style="margin-top: 3%;">
+                        <div class="col-sm-9 col-9 center-hori-vert main-font-sm" style="margin-top: 4%;">
                             YOUR PHOTO
                         </div>
-                        <div class="col-sm-10 col-10 btn btn-outline-dark font-sm user-photo-btn-sm animate-continuously animated pulse"
+                        <div class="col-sm-10 col-10 btn btn-outline-dark font-sm user-photo-btn-sm"
                              data-correct-photo
-                             style="margin-top: 3%;">
+                             style="margin-top: 5%;">
                             SEE CORRECT PHOTO
                         </div>
                         <div class="col-sm-11 col-11 d-sm-flex d-flex align-items-sm-center align-items-center justify-content-sm-center justify-content-center"
-                             style="margin-top: 6%;height: 235px;">
+                             style="margin-top: 5%; height: 235px;">
                             <img class="rounded-circle user-photo-sm" data-user-input-photo
-                                 src="{% static 'imgs/examle_user_photo.png' %}">
+                                 src="{% static 'imgs/example_user_photo.png' %}">
                         </div>
                         <form id="data-form" novalidate style="display: none;">
-                            <input accept="image/*" id="main-input" name="pic" required type="file" type="file"/>
+                            <input id="main-input" name="pic" required type="file" type="file"/>
                             <input id="main-submit" type="submit">
                         </form>
-                        <label class="col-sm-10 col-10 btn btn-outline-dark font-sm user-photo-btn-sm choose-photo-sm animate-continuously animated pulse"
+                        <label class="col-sm-10 col-10 btn btn-outline-dark font-sm user-photo-btn-sm choose-photo-sm"
                                for="main-input"
-                               style="margin-top: 6%;">CHOOSE A FILE</label>
+                               style="margin-top: 6%;margin-bottom: 6%;">CHOOSE A FILE</label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div class="container-fluid">
+    <div data-example-faces class="container"></div>
+</div>
 
 <div class="container-fluid">
     <div class="container">
         <div class="d-md-block d-sm-none d-none">
             <div class="row w-100" style="margin: 0;">
-                <div class="row w-100 justify-content-md-around" style="margin: 0;">
-                    <div class="col-md-5 d-md-flex align-items-md-center justify-content-md-center" style="margin-top: 2.5%;">
-                        <button data-prev-face class="example-face-btns-md btn btn-outline-dark" style="width: 100%;">
-                            <span class="fa fa-chevron-left" ></span>
-                        </button>
+                <div class="row w-100 justify-content-md-center" style="margin: 0;">
+                    <div class="col-md-12">
+                        <div class="row justify-content-md-center padding-0-1">
+                            <div class="col-md-4 d-md-flex align-items-md-center justify-content-md-center padL-0 padR-0"
+                                 style="margin-top: 1%;margin-right: 3%;">
+                                <button data-prev-face class="col-md-11 btn btn-outline-dark hvr-sweep-to-left">
+                                    <span class="fa fa-chevron-left"></span>
+                                </button>
+                            </div>
+                            <div class="col-md-4 d-md-flex align-items-md-center justify-content-md-center row padL-0 padR-0"
+                                 style="margin-top: 1%;margin-left: 3%;">
+                                <button data-next-face class="col-md-11 btn btn-outline-dark hvr-sweep-to-right">
+                                    <span class="fa fa-chevron-right"></span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-md-5 d-md-flex align-items-md-center justify-content-md-center row"
-                         style="margin-top: 2.5%;">
-                        <button data-next-face class="col-md-12 example-face-btns-md btn btn-outline-dark">
-                            <span class="fa fa-chevron-right" ></span>
-                        </button>
-                    </div>
-                    <div class="col-md-11 d-md-flex align-items-md-center justify-content-md-center row"
+
+                    <div class="col-md-12 d-md-flex align-items-md-center justify-content-md-center row"
                          style="margin-left: 1px;">
-                        <label data-swap for="main-submit" class="swap-not-allowed btn btn-outline-dark"
-                               style="width: 100%; margin-top: 2%;font-size: 1.75em!important;">SEND PHOTO</label>
+                        <div class="relative w-100 text-md-center" style="margin-top: 2%; margin-bottom: 2%;">
+                            <a data-shining data-swap-shining class="shining hidden-shining"><i></i></a>
+                            <label data-swap for="main-submit" class="swap-not-allowed btn btn-outline-dark">
+                                SWAP!</label>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -202,10 +238,8 @@
                                 </button>
                             </div>
                         </div>
-                        <label for="main-submit" style="margin-top: 7%;
-    font-size: 2em;
-    font-weight: 500;" class="col-sm-10 col-10 choose-buton btn btn-outline-dark example-face-btns-sm font-sm ">SEND
-                            PHOTO</label>
+                        <label data-swap for="main-submit" style="margin-top: 7%;margin-bottom: 4%;"
+                               class="col-sm-10 col-10 choose-buton btn btn-outline-dark example-face-btns-sm font-sm ">SWAP!</label>
                     </div>
                 </div>
             </div>
@@ -217,10 +251,10 @@
     <div class="modal-dialog" style="margin: 0;">
         <div class="container">
             <div class="modal-content h-100 example-face-modal-content">
-                <a data-shining class="shining" style="display: none;"><i></i></a>
+                <a data-shining class="shining hidden-shining"><i></i></a>
                 <div class="d-md-block d-sm-none d-none">
-                    <div class="row h-100 justify-content-md-center">
-                        <div class="col-md-5 row">
+                    <div class="row justify-content-md-center">
+                        <div class="col-md-4 row">
                             <div class="col-md-12 d-md-flex align-items-md-end justify-content-md-center"
                                  style="margin-top: 1%;">
                                 <table>
@@ -228,12 +262,14 @@
                                         <td class="text-center">
                                             <span data-next-modal-photo class="fa fa-caret-up caret-modal-md"
                                                   style="display:none;"></span>
+                                            <span data-transparent-caret class="fa fa-caret-up caret-modal-md-invisible"
+                                                  style="display:none;"></span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">
-                                            <div style="position: relative">
-                                                <a data-shining class="shining" style="display: none"><i></i></a>
+                                            <div class="relative">
+                                                <a data-shining class="shining hidden-shining"><i></i></a>
                                                 <img data-modal-upper-option class="modal-options-md">
                                             </div>
                                         </td>
@@ -241,12 +277,12 @@
                                 </table>
                             </div>
                             <div class="col-md-12 d-md-flex align-items-md-start justify-content-md-center"
-                                 style="margin-top: 7.5%;">
+                                 style="margin-top: 10%;">
                                 <table>
                                     <tr>
                                         <td class="text-center">
-                                            <div style="position: relative">
-                                                <a data-shining class="shining" style="display: none"><i></i></a>
+                                            <div class="relative">
+                                                <a data-shining class="shining hidden-shining"><i></i></a>
                                                 <img data-modal-lower-option class="modal-options-md">
                                             </div>
                                         </td>
@@ -255,23 +291,24 @@
                                         <td class="text-center">
                                             <span data-prev-modal-photo class="fa fa-caret-down caret-modal-md"
                                                   style="display:none;"></span>
+                                            <span data-transparent-caret class="fa fa-caret-up caret-modal-md-invisible"
+                                                  style="display:none;"></span>
                                         </td>
                                     </tr>
                                 </table>
                             </div>
                         </div>
-                        <div class="col-md-7 row">
+                        <div class="col-md-6 row">
                             <div class="col-md-12 d-md-flex align-items-md-center justify-content-md-start">
-                                <table class="w-100">
+                                <table class="w-100 detail-table-md">
                                     <tr>
                                         <td class="text-right">
-                                            <span data-close-example-face-modal class="fa fa-window-close" style="margin-bottom: 5%;"></span>
+                                            <span data-close-example-face-modal class="fa fa-window-close"></span>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td class="text-center">
-                                            <div class="d-md-flex align-items-md-center justify-content-md-center"
-                                                 style="height: 600px;">
+                                            <div class="d-md-flex align-items-md-center justify-content-md-center">
                                                 <div data-proc-desc style="display: none;"></div>
                                                 <img data-modal-main-photo>
                                             </div>
@@ -299,14 +336,14 @@
                                             align-items-sm-center align-items-center
                                             justify-content-sm-center justify-content-center
                                             h-100">
-                                <div class="col-sm-11 col-11 text-right" >
+                                <div class="col-sm-11 col-11 text-right">
                                     <span data-close-example-face-modal class="fa fa-window-close"></span>
                                 </div>
                                 <div class="col-sm-11 col-11
                                             d-sm-flex d-flex
                                             align-items-sm-center align-items-center
                                             justify-content-sm-center justify-content-center
-                                            text-center" style="height: 315px;">
+                                            text-center">
                                     <div data-proc-desc style="display: none;"></div>
                                     <img data-modal-main-photo>
                                 </div>
@@ -314,43 +351,52 @@
                                     <div class="row justify-content-sm-around justify-content-around">
                                         <div class="col-sm-1 col-1
                                                     d-sm-flex d-flex
-                                                    align-items-sm-center align-items-center" style="height: 150px;margin-left: -5%">
-                                            <span data-prev-modal-photo class="fa fa-chevron-left chevron-left-sm"></span>
+                                                    align-items-sm-center align-items-center" style="margin-left: -5%">
+                                            <span data-prev-modal-photo
+                                                  class="fa fa-chevron-left chevron-left-sm chevron-font-size"></span>
+                                            <span data-transparent-caret
+                                                  class="fa fa-caret-up chevron-sm-invisible chevron-font-size"
+                                                  style="display:none;"></span>
                                         </div>
                                         <div class="col-sm-4 col-4
                                                     d-sm-flex d-flex
                                                     justify-content-sm-end justify-content-end
-                                                    align-items-sm-center align-items-center"
-                                             style="position:relative;height: 150px;padding-left: 5px; padding-right: 5px;">
-                                            <a data-shining class="shining" style="display: none;width: 10%;"><i></i></a>
-                                            <img data-modal-lower-option class="modal-options-sm">
+                                                    align-items-sm-center align-items-center
+                                                    padL-5px padR-5px">
+                                            <div class="relative">
+                                                <a data-shining class="shining hidden-shining w-10"><i></i></a>
+                                                <img data-modal-lower-option class="modal-options-sm">
+                                            </div>
                                         </div>
                                         <div class="col-sm-4 col-4
                                                     d-sm-flex d-flex
                                                     justify-content-sm-start justify-content-start
-                                                    align-items-sm-center align-items-center"
-                                             style="position:relative;height: 150px;padding-left: 5px; padding-right: 5px;">
-                                            <a data-shining class="shining" style="display: none;width: 10%;"><i></i></a>
-                                            <img data-modal-upper-option class="modal-options-sm">
+                                                    align-items-sm-center align-items-center
+                                                    padL-5px padR-5px">
+                                            <div class="relative">
+                                                <a data-shining class="shining hidden-shining w-10"><i></i></a>
+                                                <img data-modal-upper-option class="modal-options-sm">
+                                            </div>
                                         </div>
-                                        <div class="col-sm-1 col-1 d-sm-flex d-flex align-items-center align-items-sm-center"
-                                             style="height: 150px;transform: rotate(180deg);margin-right:-5%">
-                                            <span data-next-modal-photo class="fa fa-chevron-left" style="font-size:2.75em;
-                                                color: rgba(255,255,255,0.93);"></span>
+                                        <div class="col-sm-1 col-1 d-sm-flex d-flex align-items-center align-items-sm-center hori-vert-flip"
+                                             style="margin-right:-5%">
+                                            <span data-next-modal-photo
+                                                  class="fa fa-chevron-left chevron-font-size"></span>
+                                            <span data-transparent-caret
+                                                  class="fa fa-caret-up chevron-sm-invisible chevron-font-size"
+                                                  style="display:none;"></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12 col-12 text-center">
                                     <div class="row justify-content-sm-center justify-content-center">
-                                        <button style="background-color: white!important;color: black!important;border-width: 0.15em;
-                                                    border-color: rgba(0,0,0,0.45)!important;
-                                                    border-style: solid;" data-modal-choose-button
-                                                class="col-sm-9 col-9 example-face-btns-sm font-sm btn btn-outline-dark">CHOOSE
+                                        <button data-modal-choose-button
+                                                class="col-sm-9 col-9 font-sm btn btn-outline-dark">
+                                            CHOOSE THIS ONE
                                         </button>
-                                        <button style="display: none;background-color: white!important;color: black!important;border-width: 0.15em;
-                                                border-color: rgba(0,0,0,0.45)!important;
-                                                border-style: solid;" data-download
-                                                class="col-sm-9 col-9 example-face-btns-sm font-sm btn btn-outline-dark">DOWNLOAD
+                                        <button data-download style="display: none;"
+                                                class="col-sm-9 col-9 font-sm btn btn-outline-dark">
+                                            DOWNLOAD
                                         </button>
                                     </div>
                                 </div>
@@ -362,6 +408,143 @@
         </div>
     </div>
 </div>
+<div class="modal fade pad-0" data-correct-photo-modal role="dialog">
+    <div class="modal-dialog container-fluid correct-photo-modal-dialog" style="margin: 0;">
+        <div class="container">
+            <div class="modal-content h-100 modal-alignment correct-photo-modal-content">
+                <div class="d-md-block d-sm-none d-none">
+                    <div class="row justify-content-md-center ">
+                        <div class="col-md-12">
+                            <div class="row justify-content-md-center" style="margin: 0">
+                                <div class="col-md-12 " style="z-index: 999;">
+                                    <div class="top-0 right-0 absolute">
+                                        <span data-close-correct-photo-modal class="fa fa-window-close"></span>
+                                    </div>
+                                </div>
+                                <div data-modal-correct-photos-text class="col-md-4 offset-md-4">
+                                    CORRECT PHOTOS
+                                </div>
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div>
+                                        <img data-correct-incorrect-photo
+                                             src="{% static 'imgs/correct_photos/cor1.jpg' %}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div>
+                                        <img data-correct-incorrect-photo
+                                             src="{% static 'imgs/correct_photos/cor2.jpg' %}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div>
+                                        <img data-correct-incorrect-photo
+                                             src="{% static 'imgs/correct_photos/cor3.jpg' %}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="margin-top: 4%;">
+                            <div class="row justify-content-md-center" style="margin: 0">
+                                <div data-modal-incorrect-photos-text class="col-md-4 offset-md-4 text-center">
+                                    INCORRECT PHOTOS
+                                </div>
+                                <div class="col-md-4 ">
 
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div>
+                                        <img data-correct-incorrect-photo
+                                             src="{% static 'imgs/incorrect_photos/incor1.jpg' %}">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div>
+                                        <img data-correct-incorrect-photo
+                                             src="{% static 'imgs/incorrect_photos/incor2.jpg' %}">
+
+                                    </div>
+                                </div>
+                                <div class="col-md-4 text-center">
+                                    <div>
+                                        <img data-correct-incorrect-photo
+                                             src="{% static 'imgs/incorrect_photos/incor3.jpg' %}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" d-sm-block d-block d-md-none justify-content-sm-around justify-content-around">
+                    <div class="row justify-content-sm-center justify-content-center">
+                        <div class="col-sm-12 col-12">
+                            <div class="row justify-content-sm-around justify-content-around">
+                                <div class="col-sm-6 col-6 text-center">
+                                    <div class="row justify-content-sm-center justify-content-center h-100 align-items-sm-center align-items-center">
+                                        <div class="col-sm-12 col-12 text-sm-right text-right">
+                                            <span class="fa fa-window-close" style="font-size:5vh;
+                                                                                                    color: transparent"></span>
+                                        </div>
+                                        <div data-modal-correct-photos-text class="col-sm-11 col-11 text-center">
+                                            CORRECT</br>PHOTOS
+                                        </div>
+                                        <div class="col-sm-11 col-11 text-center">
+                                            <img data-correct-incorrect-photo
+                                                 src="{% static 'imgs/correct_photos/cor1.jpg' %}">
+                                        </div>
+                                        <div class="col-sm-11 col-11 text-center">
+                                            <img data-correct-incorrect-photo
+                                                 src="{% static 'imgs/correct_photos/cor2.jpg' %}">
+                                        </div>
+                                        <div class="col-sm-11 col-11 text-center">
+                                            <img data-correct-incorrect-photo
+                                                 src="{% static 'imgs/correct_photos/cor3.jpg' %}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-6 text-center">
+                                    <div class="row justify-content-sm-center justify-content-center h-100 align-items-sm-center align-items-center">
+                                        <div class="col-sm-12 col-12 text-sm-right text-right">
+                                            <span data-close-correct-photo-modal class="fa fa-window-close" style="font-size:5vh;
+                                                                                                    color: white"></span>
+                                        </div>
+                                        <div data-modal-incorrect-photos-text class="col-sm-11 col-11 text-center">
+                                            INCORRECT</br>PHOTOS
+                                        </div>
+                                        <div class="col-sm-11 col-11 text-center">
+                                            <img data-correct-incorrect-photo
+                                                 src="{% static 'imgs/incorrect_photos/incor1.jpg' %}">
+                                        </div>
+                                        <div class="col-sm-11 col-11 text-center">
+                                            <img data-correct-incorrect-photo
+                                                 src="{% static 'imgs/incorrect_photos/incor2.jpg' %}">
+                                        </div>
+                                        <div class="col-sm-11 col-11 text-center">
+                                            <img data-correct-incorrect-photo
+                                                 src="{% static 'imgs/incorrect_photos/incor3.jpg' %}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/ml15_anime.js' %}"></script>
+<script src="{% static 'js/CONSTANTS.js' %}"></script>
+<script src="{% static 'js/config.js' %}"></script>
+<script src="{% static 'js/helpers.js' %}"></script>
+<script src="{% static 'js/modalOptions.js' %}"></script>
+<script src="{% static 'js/showPartOfFace.js' %}"></script>
+<script src="{% static 'js/swapPartOfFace.js' %}"></script>
+<script src="{% static 'js/action.js' %}"></script>
+<script src="{% static 'js/events.js' %}"></script>
 </body>
 </html>
