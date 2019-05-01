@@ -147,13 +147,18 @@ $modalLowerOption.click(function () {
  * the main modal ($modalMainPhoto) photo will be visible on the main page.
  * It will be also chosen as the one containing a part of the face that user want to have.
  * The modal ($exampleFaceModal), which shows the bigger versions of example photos, will be hidden.
+ * If any user photo had been inputted, there would be an opportunity to swap a part of the face.
  */
 $modalChooseButton.click(function () {
     exampleFaceIndex = $modalMainPhoto.data(KEY_OF_THE_INDEX_OF_A_PHOTO);
     showSpecifiedPhoto(exampleFaceIndex);
     $(buildCustomData(KEY_OF_THE_CHOOSE_PART_OF_FACE_OBJECT)).removeClass(CLASS_OF_THE_BUTTON_WITH_BLOCKED_EXAMPLE_FACE);
-    $acitveExampleFaces.find(buildCustomData(KEY_OF_THE_INDEX_OF_AN_EXAMPLE_PHOTO, exampleFaceIndex)).find(buildCustomData(KEY_OF_THE_CHOOSE_PART_OF_FACE_OBJECT)).addClass(CLASS_OF_THE_BUTTON_WITH_BLOCKED_EXAMPLE_FACE);
+    $acitveExampleFaces.find(buildCustomData(KEY_OF_THE_INDEX_OF_AN_EXAMPLE_PHOTO, exampleFaceIndex.toString())).find(buildCustomData(KEY_OF_THE_CHOOSE_PART_OF_FACE_OBJECT)).addClass(CLASS_OF_THE_BUTTON_WITH_BLOCKED_EXAMPLE_FACE);
     chooseExamplePhoto();
+    const sourceOfTheUserInputPhoto = $userInputPhoto.attr("src");
+    if (sourceOfTheUserInputPhoto !== startInputPhoto) {
+        unblockShiningOfSiblings($swapFacesButton);
+    }
     $exampleFaceModal.modal('hide');
 });
 
