@@ -5,47 +5,15 @@
 class ModalOptions {
 
     /**
-     * This function looks for the siblings(by using the jQuery method - https://api.jquery.com/siblings/)
-     * of the passed modal option '$modalOption'.
-     * To these of the siblings, which have the class 'KEY_OF_THE_SHINING_OBJECT',
-     * the class 'CLASS_OF_THE_BLOCKED_SHINING' is added.
-     * @param {jQuery} $modalOption - jQuery object representing a modal option
-     */
-    static blockShiningOfSiblings($modalOption) {
-        $modalOption.siblings().each(function () {
-            const $this = $(this);
-            if ($this.hasClass(KEY_OF_THE_SHINING_OBJECT)) {
-                $this.addClass(CLASS_OF_THE_BLOCKED_SHINING);
-            }
-        });
-    }
-
-    /**
-     * This function looks for the siblings(by using the jQuery method - https://api.jquery.com/siblings/)
-     * of the passed modal option '$modalOption'.
-     * From these of the siblings, which have the class 'KEY_OF_THE_SHINING_OBJECT',
-     * the class 'CLASS_OF_THE_BLOCKED_SHINING' is removed.
-     * @param {jQuery} $modalOption - jQuery object representing a modal option
-     */
-    static unblockShiningOfSiblings($modalOption) {
-        $modalOption.siblings().each(function () {
-            const $this = $(this);
-            if ($this.hasClass(KEY_OF_THE_SHINING_OBJECT)) {
-                $this.removeClass(CLASS_OF_THE_BLOCKED_SHINING);
-            }
-        });
-    }
-
-    /**
      * This function unchecks all modal options.
      * None of them looks as the chosen one.
      * Currently, the modal options are: '$modalUpperOption' and '$modalLowerOption'.
      */
     static uncheckAllModalOptions() {
         $modalUpperOption.removeClass(CLASS_OF_THE_CHOSEN_MODAL_OPTION);
-        ModalOptions.blockShiningOfSiblings($modalUpperOption);
+        blockShiningOfSiblings($modalUpperOption);
         $modalLowerOption.removeClass(CLASS_OF_THE_CHOSEN_MODAL_OPTION);
-        ModalOptions.blockShiningOfSiblings($modalLowerOption);
+        blockShiningOfSiblings($modalLowerOption);
     }
 
     /**
@@ -55,7 +23,7 @@ class ModalOptions {
      */
     static distinguishModalOption($modalOption) {
         $modalOption.addClass(CLASS_OF_THE_CHOSEN_MODAL_OPTION);
-        ModalOptions.unblockShiningOfSiblings($modalOption);
+        unblockShiningOfSiblings($modalOption);
     }
 
     /**
