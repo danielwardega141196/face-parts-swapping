@@ -4,7 +4,7 @@
  */
 $(document).ready(function () {
     loadPartOfFace($(buildCustomData(KEY_OF_A_PART_OF_THE_FACE, activePartOfFace)));
-    $mainInput.attr('accept', ACCEPTABLE_EXTENSIONS_OF_USER_PHOTO.join(","));
+    $mainInput.attr('accept', ACCEPTABLE_JS_EXTENSIONS_OF_USER_PHOTO.join(","));
 });
 
 /**
@@ -37,7 +37,7 @@ $mainForm.submit(function (e) {
 
 /**
  * If a user choose a correct photo
- * (a file with the extension contained in the list 'ACCEPTABLE_EXTENSIONS_OF_USER_PHOTO'),
+ * (a file with the extension contained in the list 'ACCEPTABLE_JS_EXTENSIONS_OF_USER_PHOTO'),
  * this photo will be set as the chosen user photo ($userInputPhoto).
  * Otherwise, an alert message ('INCORRECT_EXTENSION_OF_A_USER_PHOTO') will be shown.
  */
@@ -45,12 +45,12 @@ $mainInput.change(function () {
     const reader = new FileReader();
     const fileData = $(this)[0].files[0];
     const fileExtension = fileData.type;
-    if (ACCEPTABLE_EXTENSIONS_OF_USER_PHOTO.includes(fileExtension)) {
+    if (ACCEPTABLE_JS_EXTENSIONS_OF_USER_PHOTO.includes(fileExtension)) {
         reader.readAsDataURL(fileData);
         reader.onload = function () {
             setImgSrc($userInputPhoto, reader.result);
             if (activeExamplePhotoId) {
-                enableBtn($swapFacesButton);
+                unblockShiningOfSiblings($swapFacesButton);
             }
         };
     } else {
@@ -114,16 +114,6 @@ function chooseExamplePhoto() {
 }
 
 /**
- * This function removes the 'CLASS_OF_THE_DISABLED_SWAPPING' class from $button
- * and add the 'CLASS_OF_THE_SEND_PHOTO_BUTTON' class to it.
- * @param {jQuery} $button - jQuery object representing a button
- */
-function enableBtn($button) {
-    $button.removeClass(CLASS_OF_THE_DISABLED_SWAPPING);
-    $button.addClass(CLASS_OF_THE_SEND_PHOTO_BUTTON);
-}
-
-/**
  * This function checks if the small device mode is active.
  * @returns {boolean} true if the small device mode is active,false if not.
  */
@@ -150,4 +140,16 @@ function validateDataToSend() {
         return false;
     }
     return true;
+}
+
+/**
+ * This function will collapse the navigation bar in
+ * if the small device mode is active.
+ */
+function collapseTheNavBar(){
+    if ($navButton.is(':visible')) {
+        if ($buttonPartOfFace.is(':visible')){
+            $navButton.click();
+        }
+    }
 }
