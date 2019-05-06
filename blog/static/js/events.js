@@ -38,6 +38,29 @@ $(document).on("click", buildCustomData(KEY_OF_THE_CHOOSE_PART_OF_FACE_OBJECT), 
 });
 
 /**
+ * When opening a modal, the current main page position is
+ * assigned to the variable 'pagePosition' and the class 'CLASS_OF_AN_OPENED_MODAL'
+ * is added to 'body'.
+ */
+$allModals.on('show.bs.modal', function (e) {
+    const $body = $('body');
+    pagePosition = $body.scrollTop();
+    $body.addClass(CLASS_OF_AN_OPENED_MODAL);
+});
+
+/**
+ * When closing a modal,
+ * the class 'CLASS_OF_AN_OPENED_MODAL' is removed from 'body' and
+ * the position of the main page is set to the value of the 'pagePosition' variable.
+ */
+$allModals.on('hidden.bs.modal', function () {
+    const $body = $('body');
+    $body.removeClass(CLASS_OF_AN_OPENED_MODAL);
+    $body.animate({ scrollTop: pagePosition },
+                  DELAY_OF_THE_COME_BACK_TO_THE_PREVIOUS_POSITION);
+});
+
+/**
  * When you click on '$correctPhotoButton',
  * the modal, which shows correct and incorrect photos, will be displayed.
  */

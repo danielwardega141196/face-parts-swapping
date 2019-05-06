@@ -4,6 +4,8 @@
 const $mainInput = $("#main-input");
 const $mainForm = $("#data-form");
 
+const $allModals = $(".modal");
+
 const $correctPhotoButton = $("[data-correct-photo]");
 const $correctPhotoModal = $("[data-correct-photo-modal]");
 const $closeCorrectPhotoModal = $("[data-close-correct-photo-modal]");
@@ -57,3 +59,5 @@ let downloadedPartsOfFace = {};
 
 let abilityToChangePartOfFace = true;
 let loadingPartOfFaceInProgress = false;
+
+let pagePosition = 0;

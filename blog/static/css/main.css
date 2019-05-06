@@ -82,6 +82,10 @@ body {
     text-align: right;
 }
 
+.text-left {
+    text-align: left !important;
+}
+
 .want-to-have {
     cursor: auto;
     border: 0;
@@ -279,7 +283,7 @@ body {
     }
 
     [data-modal-main-photo] {
-        max-width: 95%;
+        max-width: 87.5%;
         max-height: 45vh;
         border-width: 0.35em;
         border-color: rgba(255, 255, 255, 0.2) !important;
@@ -386,7 +390,7 @@ body {
         font-family: Love !important;
         font-weight: 600;
         color: white;
-        font-size: 5vh;
+        font-size: 4vh;
         text-decoration: underline;
     }
 
@@ -394,7 +398,7 @@ body {
         font-family: Love !important;
         font-weight: 600;
         color: white;
-        font-size: 5vh;
+        font-size: 4vh;
         text-decoration: line-through;
     }
 
@@ -466,6 +470,13 @@ body {
 
     .chosen-modal-option {
         outline-color: rgba(255, 255, 255, 0.20) !important;
+    }
+
+    .modal-open {
+        overflow: hidden !important;
+        position: fixed !important;
+        width: 100% !important;
+        height: 100% !important;
     }
 }
 
@@ -478,7 +489,7 @@ body {
     }
 
     [data-modal-main-photo] {
-        max-width: 95%;
+        max-width: 87.5%;
         max-height: 45vh;
         border-width: 0.35em;
         border-color: rgba(255, 255, 255, 0.2) !important;
@@ -585,7 +596,7 @@ body {
         font-family: Love !important;
         font-weight: 600;
         color: white;
-        font-size: 5vh;
+        font-size: 4vh;
         text-decoration: underline;
     }
 
@@ -593,7 +604,7 @@ body {
         font-family: Love !important;
         font-weight: 600;
         color: white;
-        font-size: 5vh;
+        font-size: 4vh;
         text-decoration: line-through;
     }
 
@@ -665,6 +676,13 @@ body {
 
     .chosen-modal-option {
         outline-color: rgba(255, 255, 255, 0.20) !important;
+    }
+
+    .modal-open {
+        overflow: hidden !important;
+        position: fixed !important;
+        width: 100% !important;
+        height: 100% !important;
     }
 }
 
@@ -975,7 +993,7 @@ body {
 }
 
 .modal-options-sm {
-    max-width: 100%;
+    max-width: 95%;
     max-height: 20vh;
     border-color: white;
     border-style: solid;
@@ -1076,3 +1094,38 @@ div.absolute {
 .right-0 {
     right: 0 !important;
 }
+
+.center-example-faces-modal-sm {
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(calc(-50% + 15px), 0%);
+}
+
+.center-correct-photos-modal-sm {
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 0%);
+}
+
+.correct-photos-modal-left-row-sm {
+    left: -165%;
+    top: 0;
+    margin-right: 15%;
+}
+
+.correct-photos-modal-right-row-sm {
+    top: 0;
+    right: -165%;
+    margin-left: 15%;
+}
+
+.close-correct-photo-sm {
+    font-size: 5vh;
+    color: white;
+}
+
+.close-correct-photo-transparent-sm {
+    font-size: 5vh;
+    color: transparent;
+}
+
