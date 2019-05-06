@@ -12,7 +12,8 @@ from ..helpers import convert_img_to_base64, \
     convert_rgb_array_to_text, \
     convert_text_to_rgb_array, \
     remove_prefix_from_base64, \
-    set_mode_of_pil
+    set_mode_of_pil, \
+    correct_size, resize_img
 from ..settings import MESSAGES_REGARDING_MORE_OR_LESS_THAN_ONE_FACE, \
     MESSAGES_REGARDING_EXACTLY_ONE_FACE, LANDMARKS_FUNCTIONS, MINIMUM_VALUE_OF_THE_ALPHA_CHANNEL, \
     DEFAULT_PIL_MODE, PIL_MODE_OF_TRANSPARENT_PHOTOS, CORRECT_NUMBER_OF_CHANNELS_PER_PIXEL, \
@@ -261,13 +262,15 @@ class ProcessUserPhoto:
         """
         dst_img_pil = convert_base64_to_pil(photo_in_base64=self._photo_in_base64)
 
+        if not correct_size(img=dst_img_pil):
+            dst_img_pil = resize_img(img=dst_img_pil)
+
         if dst_img_pil.mode != DEFAULT_PIL_MODE:
             dst_rgba_array = np.array(set_mode_of_pil(pil=dst_img_pil, mode=PIL_MODE_OF_TRANSPARENT_PHOTOS),
                                       dtype=np.uint8)
             self._transparent_pixels = ProcessUserPhoto.prepare_transparent_pixels(rgba_array=dst_rgba_array)
 
         dst_img_pil = set_mode_of_pil(pil=dst_img_pil, mode=DEFAULT_PIL_MODE)
-
         self._dst_rgb_array = np.array(dst_img_pil, dtype=np.uint8)
         faces_landmarks = get_faces_landmarks(rgb_array=self._dst_rgb_array)
         self._number_of_detected_faces = len(faces_landmarks)

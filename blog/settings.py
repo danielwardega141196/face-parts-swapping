@@ -1,3 +1,5 @@
+from PIL import Image
+
 from apps.face_element_swapping.endpoints import GetEndpointsOfANose, GetEndpointsOfLips
 
 DESC_OF_PHOTO_IN_DB = "{id} | {date}"
@@ -68,3 +70,7 @@ REQUIRED_KEYS_OF_THE_FACE_SWAPPING_REQUEST = [KEY_OF_AN_INPUT_PHOTO,
                                               KEY_OF_THE_FACE_ID]
 
 HTML_OF_THE_MAIN_PAGE = 'blog/post_list.html'
+
+MAXIMUM_SIDE_LENGTH = 710
+MAXIMUM_NUMBER_OF_PIXELS = MAXIMUM_SIDE_LENGTH * MAXIMUM_SIDE_LENGTH
+DEFAULT_RESIZING_FILTER = Image.LANCZOS

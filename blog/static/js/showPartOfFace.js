@@ -39,27 +39,26 @@ class ShowPartOfFace {
      * false if an error has occurred.
      */
     static downloadExampleFaces(partOfFace) {
-        var downloadSuccessful;
+        let downloadSuccessful;
+
         $.ajax({
             url: LOAD_FACES_URL,
-            type: 'POST',
+            method : "post",
             async: false,
-            dataType: 'json',
+            dataType : "json",
             data: {"partOfFace": partOfFace},
-            success: function (res) {
-                var divWithExampleFaces = ShowPartOfFace.createDivWithExampleFaces(partOfFace, res["example_faces"]);
-                $exampleFacesDiv.append(divWithExampleFaces);
-                downloadedPartsOfFace[partOfFace] = true;
-                console.log("Example faces have been successfully downloaded.");
-                downloadSuccessful = true;
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.warn("During downloading example faces an error occured.");
-                console.warn("Type of error: ", jqXHR);
-                console.warn("Status: ", textStatus);
-                console.warn("Error:", errorThrown);
-                downloadSuccessful = false;
-            }
+        }).done(function (res) {
+            const divWithExampleFaces = ShowPartOfFace.createDivWithExampleFaces(partOfFace, res["example_faces"]);
+            $exampleFacesDiv.append(divWithExampleFaces);
+            downloadedPartsOfFace[partOfFace] = true;
+            console.log("Example faces have been successfully downloaded.");
+            downloadSuccessful = true;
+        }).fail(function (msg) {
+            console.warn("During downloading example faces an error occured.");
+            console.warn("Type of error: ", jqXHR);
+            console.warn("Status: ", textStatus);
+            console.warn("Error:", errorThrown);
+            downloadSuccessful = false;
         });
         return downloadSuccessful;
     }

@@ -329,13 +329,13 @@
                         </div>
                     </div>
                 </div>
-                <div class=" d-sm-block d-block d-md-none justify-content-sm-around justify-content-around">
-                    <div class="row justify-content-sm-center justify-content-center">
+                <div class="d-sm-block d-block d-md-none justify-content-sm-around justify-content-around h-100 position-fixed">
+                    <div class="row justify-content-sm-center justify-content-center h-100 w-100">
                         <div class="col-sm-11 col-11 text-center">
                             <div class="row d-sm-flex d-flex
                                             align-items-sm-center align-items-center
                                             justify-content-sm-center justify-content-center
-                                            h-100">
+                                            h-100 position-fixed center-example-faces-modal-sm">
                                 <div class="col-sm-11 col-11 text-right">
                                     <span data-close-example-face-modal class="fa fa-window-close"></span>
                                 </div>
@@ -351,7 +351,7 @@
                                     <div class="row justify-content-sm-around justify-content-around">
                                         <div class="col-sm-1 col-1
                                                     d-sm-flex d-flex
-                                                    align-items-sm-center align-items-center" style="margin-left: -5%">
+                                                    align-items-sm-center align-items-center">
                                             <span data-prev-modal-photo
                                                   class="fa fa-chevron-left chevron-left-sm chevron-font-size"></span>
                                             <span data-transparent-caret
@@ -378,8 +378,7 @@
                                                 <img data-modal-upper-option class="modal-options-sm">
                                             </div>
                                         </div>
-                                        <div class="col-sm-1 col-1 d-sm-flex d-flex align-items-center align-items-sm-center hori-vert-flip"
-                                             style="margin-right:-5%">
+                                        <div class="col-sm-1 col-1 d-sm-flex d-flex align-items-center align-items-sm-center hori-vert-flip">
                                             <span data-next-modal-photo
                                                   class="fa fa-chevron-left chevron-font-size"></span>
                                             <span data-transparent-caret
@@ -478,53 +477,53 @@
                     </div>
                 </div>
 
-                <div class=" d-sm-block d-block d-md-none justify-content-sm-around justify-content-around">
-                    <div class="row justify-content-sm-center justify-content-center">
+                <div class="d-sm-block d-block d-md-none
+                            justify-content-sm-around justify-content-around
+                            h-100 position-fixed center-correct-photos-modal-sm">
+                    <div class="row justify-content-sm-center justify-content-center w-100 h-100" style="margin: 0;">
                         <div class="col-sm-12 col-12">
-                            <div class="row justify-content-sm-around justify-content-around">
-                                <div class="col-sm-6 col-6 text-center">
-                                    <div class="row justify-content-sm-center justify-content-center h-100 align-items-sm-center align-items-center">
-                                        <div class="col-sm-12 col-12 text-sm-right text-right">
-                                            <span class="fa fa-window-close" style="font-size:5vh;
-                                                                                                    color: transparent"></span>
+                            <div class="row justify-content-sm-around justify-content-around h-100 w-100">
+                                <div class="col-sm-6 col-6">
+                                    <div class="row
+                                                justify-content-sm-center justify-content-center
+                                                align-items-sm-center align-items-center
+                                                h-100 position-fixed correct-photos-modal-left-row-sm">
+                                        <div class="col-sm-11 col-11 text-sm-right text-left">
+                                            <span class="fa fa-window-close close-correct-photo-transparent-sm"></span>
                                         </div>
                                         <div data-modal-correct-photos-text class="col-sm-11 col-11 text-center">
-                                            CORRECT</br>PHOTOS
+                                            CORRECT<br>PHOTOS
                                         </div>
                                         <div class="col-sm-11 col-11 text-center">
-                                            <img data-correct-incorrect-photo
-                                                 src="{% static 'imgs/correct_photos/cor1.jpg' %}">
+                                            <img data-correct-incorrect-photo src="{% static 'imgs/correct_photos/cor1.jpg' %}">
                                         </div>
                                         <div class="col-sm-11 col-11 text-center">
-                                            <img data-correct-incorrect-photo
-                                                 src="{% static 'imgs/correct_photos/cor2.jpg' %}">
+                                            <img data-correct-incorrect-photo src="{% static 'imgs/correct_photos/cor2.jpg' %}">
                                         </div>
                                         <div class="col-sm-11 col-11 text-center">
-                                            <img data-correct-incorrect-photo
-                                                 src="{% static 'imgs/correct_photos/cor3.jpg' %}">
+                                            <img data-correct-incorrect-photo src="{% static 'imgs/correct_photos/cor3.jpg' %}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-6 text-center">
-                                    <div class="row justify-content-sm-center justify-content-center h-100 align-items-sm-center align-items-center">
-                                        <div class="col-sm-12 col-12 text-sm-right text-right">
-                                            <span data-close-correct-photo-modal class="fa fa-window-close" style="font-size:5vh;
-                                                                                                    color: white"></span>
+                                    <div class="row
+                                                justify-content-sm-center justify-content-center
+                                                align-items-sm-center align-items-center
+                                                h-100 position-fixed correct-photos-modal-right-row-sm">
+                                        <div class="col-sm-11 col-11 text-sm-right text-right" style="margin-right: 5%;">
+                                            <span data-close-correct-photo-modal class="fa fa-window-close close-correct-photo-sm"></span>
                                         </div>
                                         <div data-modal-incorrect-photos-text class="col-sm-11 col-11 text-center">
-                                            INCORRECT</br>PHOTOS
+                                            INCORRECT<br>PHOTOS
                                         </div>
                                         <div class="col-sm-11 col-11 text-center">
-                                            <img data-correct-incorrect-photo
-                                                 src="{% static 'imgs/incorrect_photos/incor1.jpg' %}">
+                                            <img data-correct-incorrect-photo src="{% static 'imgs/incorrect_photos/incor1.jpg' %}">
                                         </div>
                                         <div class="col-sm-11 col-11 text-center">
-                                            <img data-correct-incorrect-photo
-                                                 src="{% static 'imgs/incorrect_photos/incor2.jpg' %}">
+                                            <img data-correct-incorrect-photo src="{% static 'imgs/incorrect_photos/incor2.jpg' %}">
                                         </div>
                                         <div class="col-sm-11 col-11 text-center">
-                                            <img data-correct-incorrect-photo
-                                                 src="{% static 'imgs/incorrect_photos/incor3.jpg' %}">
+                                            <img data-correct-incorrect-photo src="{% static 'imgs/incorrect_photos/incor3.jpg' %}">
                                         </div>
                                     </div>
                                 </div>

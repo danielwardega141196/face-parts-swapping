@@ -91,18 +91,26 @@ class swapPartOfFace {
     processUserPhoto() {
         this.showShiningElements();
         swapPartOfFace.startProcessingUserPhoto();
-        var thisTmp = this;
-        //$.get(PROCESS_PHOTO_URL, {}).done(function(res) {
-        $.post(PROCESS_PHOTO_URL, swapPartOfFace.getDataToSend()).done(function (res) {
+        const thisTmp = this;
+
+        $.ajax({
+            url : PROCESS_PHOTO_URL,
+            method : "post",
+            dataType : "json",
+            data : swapPartOfFace.getDataToSend(),
+            timeout: TIMEOUT_OF_THE_PHOTO_PROCESSING
+        }).done(function (res) {
             swapPartOfFace.processPositivelyBackendResponse(res);
         }).fail(function (msg) {
             $descDuringPhotoProcessing.html(ERROR_ICON);
+            setTimeout(function(){window.location.reload();},
+                        DELAY_OF_THE_PAGE_RELOADING);
         }).always(function () {
             abilityToChangePartOfFace = true;
             thisTmp.hideShiningElements();
             swapPartOfFace.unblockTheScreen();
             $closeExampleFaceModal.show();
-        })
+        });
     }
 
     /**
