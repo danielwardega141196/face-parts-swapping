@@ -9,7 +9,10 @@ from .settings import DEFAULT_PIL_MODE, \
     PIL_MODE_OF_TRANSPARENT_PHOTOS, \
     FILE_EXTENSIONS_ACCORDING_TO_PIL_MODES, \
     BASE64_PREFIXES_ACCORDING_TO_FILE_EXTENSIONS, \
-    SPECIAL_SIGNS_IN_FILE_NAMES
+    SPECIAL_SIGNS_IN_FILE_NAMES, \
+    MAXIMUM_NUMBER_OF_PIXELS, \
+    MAXIMUM_SIDE_LENGTH, \
+    DEFAULT_RESIZING_FILTER
 
 
 def convert_img_to_base64(img):
@@ -134,3 +137,51 @@ def convert_pil_to_np_array(pil, np_dtype=np.uint8):
     :rtype: numpy.ndarray (https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html)
     """
     return np.array(pil, dtype=np_dtype)
+
+
+def correct_size(img,
+                 maximum_number_of_pixels=MAXIMUM_NUMBER_OF_PIXELS):
+    """
+    This function checks if the number of pixels
+    in the passed image ('img') is is less or equal
+    to 'maximum_number_of_pixels' (passed as a parameter).
+    :param img: PIL object representing an image
+    :type img: PIL.*
+    :param maximum_number_of_pixels: the maximum number of pixels
+    the passed image ('img') can contain.
+    :type maximum_number_of_pixels: integer - int
+    :return: True if the number of pixels in the image
+    is less or equal to 'maximum_number_of_pixels', false if not.
+    :rtype: bool(True or False)
+    """
+    height, width = img.size
+    return height * width <= maximum_number_of_pixels
+
+
+def resize_img(img,
+               maximum_side_length=MAXIMUM_SIDE_LENGTH,
+               resizing_filter=DEFAULT_RESIZING_FILTER):
+    """
+    This function resizes the passed image keeping the aspect ratio.
+    The longer side will have a length equal to 'maximum_side_length'
+    (passed as a parameter).
+    :param img: PIL object representing an image
+    :type img: PIL.*
+    :param maximum_side_length: the maximum side length
+    the passed image ('img') can have.
+    :type maximum_side_length: integer - int
+    :param resizing_filter: an integer representing
+    filter that will be used for resampling.
+    :type resizing_filter: integer - int
+    :return: PIL object representing the resized image
+    :rtype: PIL.*
+    """
+    height, width = img.size
+    if height > width:
+        new_height = maximum_side_length
+        new_width = int(maximum_side_length * (width / height))
+    else:
+        new_height = int(maximum_side_length * (height / width))
+        new_width = maximum_side_length
+    img = img.resize((new_height, new_width), resizing_filter)
+    return img
