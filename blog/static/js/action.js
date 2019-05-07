@@ -42,17 +42,19 @@ $mainForm.submit(function (e) {
  * Otherwise, an alert message ('INCORRECT_EXTENSION_OF_A_USER_PHOTO') will be shown.
  */
 $mainInput.change(function () {
-    const reader = new FileReader();
     const fileData = $(this)[0].files[0];
     const fileExtension = fileData.type;
     if (ACCEPTABLE_JS_EXTENSIONS_OF_USER_PHOTO.includes(fileExtension)) {
-        reader.readAsDataURL(fileData);
-        reader.onload = function () {
-            setImgSrc($userInputPhoto, reader.result);
-            if (activeExamplePhotoId) {
-                unblockShiningOfSiblings($swapFacesButton);
-            }
-        };
+        loadImage(
+            fileData,
+            function (canvas) {
+                setImgSrc($userInputPhoto, canvas.toDataURL(fileExtension));
+                if (activeExamplePhotoId) {
+                    unblockShiningOfSiblings($swapFacesButton);
+                }
+            },
+            {orientation: true}
+        );
     } else {
         alert(INCORRECT_EXTENSION_OF_A_USER_PHOTO);
     }
