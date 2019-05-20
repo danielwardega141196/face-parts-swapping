@@ -48,12 +48,13 @@ function findFileExtension(imgSrc) {
  * The name must end with an extension e.g. '.jpg', '.png'.
  */
 function downloadPhoto(imgSrc, nameOfAFile) {
-    const a = document.createElement('a');
-    a.href = imgSrc;
-    a.download = nameOfAFile;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    download(imgSrc, nameOfAFile, "image/jpeg");
+    //const a = document.createElement('a');
+    ///a.href = imgSrc;
+    //a.download = nameOfAFile;
+    //document.body.appendChild(a);
+    ///a.click();
+    //document.body.removeChild(a);
 }
 
 /**
