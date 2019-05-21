@@ -39,6 +39,22 @@ function findFileExtension(imgSrc) {
 }
 
 /**
+ * This function looks for MIME type (https://en.wikipedia.org/wiki/Media_type)
+ * of the base64-encoded image('imgSrc').
+ * The type is contained in the prefix of the base64-encoded image.
+ * @param {string} imgSrc - a base64-encoded image. The image must have a special prefix.
+ * Here are some examples of the prefixes: 'data:image/png;base64,' ,
+ *                                         'data:image/gif;base64,' ,
+ *                                         'data:image/jpeg;base64,'
+ * @returns {string} MIME type of the passed image('imgSrc').
+ */
+function findMIMEtype(imgSrc) {
+    const startIndexOfMIMEtype = imgSrc.indexOf(":") + 1;
+    const endIndexOfMIMEtype = imgSrc.indexOf(";");
+    return imgSrc.slice(startIndexOfMIMEtype, endIndexOfMIMEtype);
+}
+
+/**
  * This function enables to download the base64-encoded image('imgSrc').
  * @param {string} imgSrc - a base64-encoded image. The image must have a special prefix.
  * Here are some examples of the prefixes: 'data:image/png;base64,' ,
@@ -48,12 +64,8 @@ function findFileExtension(imgSrc) {
  * The name must end with an extension e.g. '.jpg', '.png'.
  */
 function downloadPhoto(imgSrc, nameOfAFile) {
-    const a = document.createElement('a');
-    a.href = imgSrc;
-    a.download = nameOfAFile;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
+    const MIMEtype = findMIMEtype(imgSrc);
+    download(imgSrc, nameOfAFile, MIMEtype);
 }
 
 /**
