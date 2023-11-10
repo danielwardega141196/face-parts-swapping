@@ -1,0 +1,1131 @@
+@font-face {
+    font-family: "Love";
+    src: url('../Love.otf') format("opentype");;
+}
+
+body {
+    background-color: black;
+}
+
+[data-part-of-face-text] {
+    text-transform: uppercase;
+}
+
+[data-example-face-modal] {
+    padding: 0 !important;
+
+}
+
+[data-example-face-modal] > .modal-dialog {
+    max-width: none;
+    background-color: rgba(0, 0, 0, 0.875);
+}
+
+[data-nav-button] {
+    outline: none !important;
+    font-size: 0.75em;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 10%);
+    position: absolute;
+    background-color: black;
+}
+
+.navbar {
+    background-color: black !important
+}
+
+.navbar-brand {
+    margin-right: 0;
+    text-align: center;
+    font-size: 1.1em !important;
+}
+
+.initial-swap-text-md {
+    text-align: center;
+    font-size: 1.35em;
+    font-weight: 600;
+    font-style: italic;
+    color: black;
+}
+
+.initial-swap-text-sm {
+    text-align: center;
+    font-size: 1.25em;
+    font-weight: 600;
+    font-style: italic;
+    color: black;
+}
+
+.example-face-modal-content {
+    position: relative;
+    justify-content: center;
+    background-color: transparent;
+    border: 0;
+}
+
+.caret-modal-md {
+    font-size: 4.5rem;
+    color: white !important;
+}
+
+.caret-modal-md-invisible {
+    font-size: 4.5rem;
+    color: transparent !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.want-to-have {
+    cursor: auto;
+    border: 0;
+    background-color: transparent !important;
+    color: black !important;
+}
+
+.chevron-left-sm {
+    font-size: 2.75em;
+    color: white;
+}
+
+.chevron-sm-invisible {
+    font-size: 2.75em;
+    color: transparent;
+}
+
+.choose-button {
+    border: 0 !important;
+    background-color: black !important;
+    border-radius: 0 !important;
+    color: white !important;
+    letter-spacing: 0.25rem !important;
+    font-weight: 500 !important;
+    font-family: Love !important;
+    box-shadow: none !important;
+}
+
+.user-photo-div-md {
+    height: 250px;
+}
+
+.chevron-down-div {
+    font-size: 2.5em !important;
+    cursor: auto;
+    border: 0;
+    background-color: transparent !important;
+    opacity: 1 !important;
+}
+
+.user-photo-btn-md {
+    color: black !important;
+    border: calc(0.05em + 1px) solid black !important;
+}
+
+.user-photo-btn-md:hover {
+    background-color: black;
+    color: white !important;
+    transform: scale(1.15);
+}
+
+.user-photo-btn-sm {
+    color: black !important;
+    border-color: black !important;
+}
+
+.user-photo-btn-sm:hover {
+    color: black !important;
+    border-color: black !important;
+    background-color: transparent !important;
+}
+
+.choose-photo-sm {
+
+    border-width: 0.15em;
+    border-color: rgba(0, 0, 0, 0.25);
+}
+
+.choose-button-block {
+    color: rgba(255, 255, 255, 0.5) !important;
+    pointer-events: none !important;
+}
+
+.animate-continuously {
+    -webkit-animation-iteration-count: infinite !important;
+    animation-iteration-count: infinite !important;
+}
+
+.disabled {
+    pointer-events: none !important;
+}
+
+.swap-not-allowed {
+    background-color: black !important;
+    color: white !important;
+    border: calc(0.05rem + 1px) solid white !important;
+}
+
+.navbar-active-icon {
+    background-image: url("../imgs/navbar_active_icon.jpg") !important;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.navbar-inactive-icon {
+    background-image: url("../imgs/navbar_inactive_icon.jpg") !important;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.navbar-toggler {
+    border-color: white !important;
+}
+
+.center-hori-vert {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-button {
+    border: 0 !important;
+    background-color: black !important;
+    border-radius: 0 !important;
+    color: white !important;
+    font-size: calc(125% + 5 * (100vw - 600px) / 400) !important;
+    letter-spacing: 0.25rem !important;
+    font-weight: 500 !important;
+    font-family: Love !important;
+    outline: none !important;
+}
+
+.nav-button:hover {
+    color: black !important;
+    background-color: white !important;
+}
+
+.ml15 {
+    font-weight: 600;
+}
+
+.ml15 .word {
+    display: inline-block;
+    line-height: 1em;
+}
+
+.black-normal-text-md {
+    font-weight: 600;
+    font-size: 0.9em;
+    color: black !important;
+}
+
+.scene-with-choices {
+    background-color: white;
+}
+
+.user-photo-md {
+    max-height: 95%;
+    max-width: 90%;
+    border-style: double;
+    border-width: 0.25em;
+    border-color: #987e58;
+}
+
+.chosen-photo-md {
+    max-height: 95%;
+    max-width: 90%;
+    border-style: double;
+    border-width: 0.25em;
+    border-color: #987e58;
+}
+
+.main-font-sm {
+    font-size: 1.25em;
+    color: black;
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.font-sm {
+    font-weight: 600;
+    font-size: 1em;
+    color: black !important;
+}
+
+.user-photo-sm {
+    max-height: 95%;
+    max-width: 100%;
+    border-style: double;
+    border-color: black;
+    border-width: 0.2em;
+}
+
+.modal-alignment {
+    justify-content: center;
+}
+
+@media (max-width: 575.98px) {
+    [data-nav-inside] {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        background: linear-gradient(to bottom, black 97%, #987e58 97%);
+    }
+
+    [data-modal-main-photo] {
+        max-width: 87.5%;
+        max-height: 45vh;
+        border-width: 0.35em;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+        border-style: solid;
+    }
+
+    [data-close-example-face-modal] {
+        font-size: 5vh;
+        color: white;
+    }
+
+    [data-proc-desc] {
+        font-size: 2.65em;
+        color: white;
+        font-weight: 400;
+        font-family: Love;
+        line-height: 1.2em;
+    }
+
+    [data-prev-face] {
+        border-left-width: 0.15em !important;
+        border-top-width: 0.15em !important;
+        border-bottom-width: 0.15em !important;
+        border-right-width: 0.075em !important;
+    }
+
+    [data-prev-face] > span {
+        font-size: 1.4em;
+        margin: auto auto !important;
+        color: white !important;
+    }
+
+    [data-next-face] {
+        border-left-width: 0.075em !important;
+        border-top-width: 0.15em !important;
+        border-bottom-width: 0.15em !important;
+        border-right-width: 0.15em !important;
+    }
+
+    [data-next-face] > span {
+        font-size: 1.4em;
+        margin: auto auto !important;
+        color: white !important;
+    }
+
+    [data-swap] {
+        font-size: 1.4em;
+        border-width: 0.15rem;
+        border-color: white !important;
+    }
+
+    [data-prev-modal-photo] {
+        color: white !important;
+    }
+
+    [data-next-modal-photo] {
+        color: white !important;
+    }
+
+    [data-modal-choose-button] {
+        background-color: white !important;
+        color: black !important;
+        border-width: 0.15em;
+        border-color: rgba(0, 0, 0, 0.45) !important;
+        border-style: solid;
+        font-size: 2.5vh;
+    }
+
+    [data-modal-choose-button]:hover {
+        box-shadow: none !important;
+    }
+
+    [data-modal-choose-button]:focus {
+        box-shadow: none !important;
+    }
+
+    [data-modal-choose-button]:active {
+        box-shadow: none !important;
+    }
+
+    [data-download] {
+        background-color: white !important;
+        color: black !important;
+        border-width: 0.15em;
+        border-color: rgba(0, 0, 0, 0.45) !important;
+        border-style: solid;
+        font-size: 2.5vh;
+    }
+
+    [data-download]:hover {
+        box-shadow: none !important;
+    }
+
+    [data-download]:focus {
+        box-shadow: none !important;
+    }
+
+    [data-download]:active {
+        box-shadow: none !important;
+    }
+
+    [data-modal-correct-photos-text] {
+        text-align: center;
+        font-family: Love !important;
+        font-weight: 600;
+        color: white;
+        font-size: 4vh;
+        text-decoration: underline;
+    }
+
+    [data-modal-incorrect-photos-text] {
+        font-family: Love !important;
+        font-weight: 600;
+        color: white;
+        font-size: 4vh;
+        text-decoration: line-through;
+    }
+
+    [data-correct-incorrect-photo] {
+        max-width: 90%;
+        max-height: 22vh;
+        border-color: white;
+        border-style: double;
+        border-width: 0.5em !important;
+    }
+
+    [data-part-of-face-text] {
+        text-transform: uppercase;
+    }
+
+    [data-want-to-have] {
+        cursor: auto;
+        border: 0;
+        background-color: transparent !important;
+        color: white !important;
+        opacity: 1 !important;
+    }
+
+    [data-face-id] {
+        max-height: 95%;
+        max-width: 100%;
+        border-style: ridge;
+        border-color: white;
+        border-width: 0.2em
+    }
+
+    [data-example-photo-name] {
+        color: white;
+        text-transform: uppercase;
+        text-decoration: underline;
+        text-align: center;
+        font-size: 1.25em;
+        font-weight: 600;
+        word-spacing: 100vw;
+    }
+
+    [data-zoom] {
+        border-width: 0.15em !important;
+        font-size: 1em;
+    }
+
+    [data-correct-photo] {
+        border-width: 0.15em !important;
+        border-color: black !important;
+    }
+
+    .nav-div {
+        position: absolute;
+        top: 0;
+        z-index: 999;
+        width: 100% !important;
+        padding: 0 !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    .scene-with-choices {
+        margin-top: 3.2rem;
+    }
+
+    .choose-button {
+        font-size: 1em !important;
+    }
+
+    .chosen-modal-option {
+        outline-color: rgba(255, 255, 255, 0.20) !important;
+    }
+
+    .modal-open {
+        overflow: hidden !important;
+        position: fixed !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    [data-nav-inside] {
+        position: fixed;
+        width: 100%;
+        top: 0;
+        background: linear-gradient(to bottom, black 97%, #987e58 97%);
+    }
+
+    [data-modal-main-photo] {
+        max-width: 87.5%;
+        max-height: 45vh;
+        border-width: 0.35em;
+        border-color: rgba(255, 255, 255, 0.2) !important;
+        border-style: solid;
+    }
+
+    [data-close-example-face-modal] {
+        font-size: 5vh;
+        color: white;
+    }
+
+    [data-proc-desc] {
+        font-size: 2.65em;
+        color: white;
+        font-weight: 400;
+        font-family: Love;
+        line-height: 1.2em;
+    }
+
+    [data-prev-face] {
+        border-left-width: 0.15em !important;
+        border-top-width: 0.15em !important;
+        border-bottom-width: 0.15em !important;
+        border-right-width: 0.075em !important;
+    }
+
+    [data-prev-face] > span {
+        font-size: 1.4em;
+        margin: auto auto !important;
+        color: white !important;
+    }
+
+    [data-next-face] {
+        border-left-width: 0.075em !important;
+        border-top-width: 0.15em !important;
+        border-bottom-width: 0.15em !important;
+        border-right-width: 0.15em !important;
+    }
+
+    [data-next-face] > span {
+        font-size: 1.4em;
+        margin: auto auto !important;
+        color: white !important;
+    }
+
+    [data-swap] {
+        font-size: 1.4em;
+        border-width: 0.15rem;
+        border-color: white !important;
+    }
+
+    [data-prev-modal-photo] {
+        color: white !important;
+    }
+
+    [data-next-modal-photo] {
+        color: white !important;
+    }
+
+    [data-modal-choose-button] {
+        background-color: white !important;
+        color: black !important;
+        border-width: 0.15em;
+        border-color: rgba(0, 0, 0, 0.45) !important;
+        border-style: solid;
+        font-size: 2.5vh;
+    }
+
+    [data-modal-choose-button]:hover {
+        box-shadow: none !important;
+    }
+
+    [data-modal-choose-button]:focus {
+        box-shadow: none !important;
+    }
+
+    [data-modal-choose-button]:active {
+        box-shadow: none !important;
+    }
+
+    [data-download] {
+        background-color: white !important;
+        color: black !important;
+        border-width: 0.15em;
+        border-color: rgba(0, 0, 0, 0.45) !important;
+        border-style: solid;
+        font-size: 2.5vh;
+    }
+
+    [data-download]:hover {
+        box-shadow: none !important;
+    }
+
+    [data-download]:focus {
+        box-shadow: none !important;
+    }
+
+    [data-download]:active {
+        box-shadow: none !important;
+    }
+
+    [data-modal-correct-photos-text] {
+        text-align: center;
+        font-family: Love !important;
+        font-weight: 600;
+        color: white;
+        font-size: 4vh;
+        text-decoration: underline;
+    }
+
+    [data-modal-incorrect-photos-text] {
+        font-family: Love !important;
+        font-weight: 600;
+        color: white;
+        font-size: 4vh;
+        text-decoration: line-through;
+    }
+
+    [data-correct-incorrect-photo] {
+        max-width: 90%;
+        max-height: 22vh;
+        border-color: white;
+        border-style: double;
+        border-width: 0.5em !important;
+    }
+
+    [data-part-of-face-text] {
+        text-transform: uppercase;
+    }
+
+    [data-want-to-have] {
+        cursor: auto;
+        border: 0;
+        background-color: transparent !important;
+        color: white !important;
+        opacity: 1 !important;
+    }
+
+    [data-face-id] {
+        max-height: 95%;
+        max-width: 100%;
+        border-style: ridge;
+        border-color: white;
+        border-width: 0.2em
+    }
+
+    [data-example-photo-name] {
+        color: white;
+        text-transform: uppercase;
+        text-decoration: underline;
+        text-align: center;
+        font-size: 1.25em;
+        font-weight: 600;
+        word-spacing: 100vw;
+    }
+
+    [data-zoom] {
+        border-width: 0.15em !important;
+        font-size: 1em;
+    }
+
+    [data-correct-photo] {
+        border-width: 0.15em !important;
+        border-color: black !important;
+    }
+
+    .nav-div {
+        position: absolute;
+        top: 0;
+        z-index: 999;
+        width: 100% !important;
+        padding: 0 !important;
+        margin-right: auto !important;
+        margin-left: auto !important;
+    }
+
+    .scene-with-choices {
+        margin-top: 3.2rem;
+    }
+
+    .choose-button {
+        font-size: 1em !important;
+    }
+
+    .chosen-modal-option {
+        outline-color: rgba(255, 255, 255, 0.20) !important;
+    }
+
+    .modal-open {
+        overflow: hidden !important;
+        position: fixed !important;
+        width: 100% !important;
+        height: 100% !important;
+    }
+}
+
+@media (min-width: 768px) {
+    [data-modal-main-photo] {
+        max-height: 58vh;
+        max-width: 90%;
+        outline-style: solid;
+        outline-color: white;
+        outline-width: 0.4rem;
+        border-style: solid;
+        border-width: 0.1rem;
+        border-color: #987e58;
+    }
+
+    [data-close-example-face-modal] {
+        font-size: 3em;
+        color: white;
+    }
+
+    [data-proc-desc] {
+        font-size: 4em;
+        color: white;
+        font-weight: 400;
+        font-family: Love;
+        line-height: 1.2em
+    }
+
+    [data-prev-face] {
+        font-size: 0.9em !important;
+        font-weight: 600;
+        background-color: black;
+        color: white;
+        box-shadow: none !important;
+        border: calc(0.05em + 1px) solid white !important;
+    }
+
+    [data-prev-face]:hover {
+        background-color: black !important;
+        color: black !important;
+        transform: scale(1.1);
+        border-color: black !important;
+    }
+
+    [data-prev-face] > span {
+        font-size: 1.75em;
+    }
+
+    [data-next-face] {
+        font-size: 0.9em !important;
+        font-weight: 600;
+        background-color: black;
+        color: white;
+        box-shadow: none !important;
+        border: calc(0.05em + 1px) solid white !important;
+    }
+
+    [data-next-face]:hover {
+        background-color: black !important;
+        color: black !important;
+        transform: scale(1.1);
+        border-color: black !important;
+    }
+
+    [data-next-face] > span {
+        font-size: 1.75em;
+    }
+
+    [data-swap] {
+        width: 70%;
+        font-size: 1.4em !important;
+        margin: 0 !important;
+        font-weight: 600;
+    }
+
+    [data-swap-shining] {
+        -webkit-animation: move 3s !important;
+        -webkit-animation-iteration-count: infinite !important;
+        -webkit-animation-delay: 1s !important;
+        width: 15% !important;
+    }
+
+    [data-close-correct-photo-modal] {
+        font-size: 2.5em !important;
+        color: white !important;
+    }
+
+    [data-modal-correct-photos-text] {
+        font-family: Love !important;
+        font-weight: 600;
+        font-size: 2.25rem;
+        color: white;
+        text-align: center;
+        text-decoration: underline;
+    }
+
+    [data-modal-incorrect-photos-text] {
+        font-family: Love !important;
+        font-weight: 600;
+        font-size: 2.25rem;
+        color: white;
+        text-decoration: line-through;
+        text-decoration-color: white;
+    }
+
+    [data-correct-incorrect-photo] {
+        max-height: 31vh;
+        max-width: 80%;
+        border-style: double;
+        border-color: white;
+        border-width: 0.5em;
+    }
+
+    [data-face-id] {
+        max-width: 90%;
+        border-width: 0.25em;
+        max-height: 95%;
+        border-style: solid;
+        border-color: white;
+    }
+
+    [data-example-photo-options] {
+        padding-top: 4%;
+        padding-bottom: 4%;
+        padding-left: 0;
+        padding-right: 0
+    }
+
+    [data-example-photo-name] {
+        color: white;
+        text-transform: uppercase;
+        text-align: center;
+        font-size: 0.9em;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    [data-zoom] {
+        color: white;
+        font-size: 0.9em;
+    }
+
+    [data-choose-part-of-face] {
+        color: white;
+        font-size: 0.9em;
+    }
+
+    [data-want-to-have] {
+        color: black !important;
+        opacity: 1 !important;
+    }
+
+    .nav-div {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .choose-button {
+        font-size: 1.25em !important;
+    }
+
+    .choose-button:hover {
+        color: black !important;
+        background-color: white !important;
+    }
+
+    .chosen-modal-option {
+        outline-style: solid;
+        outline-width: 0.4em;
+        outline-color: white;
+    }
+
+    .block-example-face-btn {
+        background-color: white !important;
+        border-color: white !important;
+        color: black !important;
+        transform: scale(1.1);
+        pointer-events: none;
+    }
+
+    .margin-right {
+        margin-right: 3%;
+    }
+
+    .margin-left {
+        margin-left: 3%;
+    }
+
+    .hvr-sweep-to-left:before {
+        background: white !important;
+        height: calc(100% + 0.1em + 2px) !important;
+        width: calc(100% + 0.1em + 2px) !important;
+        top: calc(-0.05em - 1px) !important;
+        left: calc(-0.05em - 1px) !important;
+        border-radius: 0.25rem !important;
+    }
+
+
+    .hvr-sweep-to-right:before {
+        background: white !important;
+        height: calc(100% + 0.1em + 2px) !important;
+        width: calc(100% + 0.1em + 2px) !important;
+        top: calc(-0.05em - 1px) !important;
+        left: calc(-0.05em - 1px) !important;
+        border-radius: 0.25rem !important;
+    }
+
+    .hvr-rectangle-in {
+        display: inline-block;
+        vertical-align: middle;
+        -webkit-transform: perspective(1px) translateZ(0);
+        transform: perspective(1px) translateZ(0);
+        box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+        position: relative;
+        background: #2098D1;
+        -webkit-transition-property: color;
+        transition-property: color;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+    }
+
+    .hvr-rectangle-in:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: black;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition-property: transform;
+        transition-property: transform;
+        -webkit-transition-duration: 0.3s;
+        transition-duration: 0.3s;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+    }
+
+    .hvr-rectangle-in:hover, .hvr-rectangle-in:focus, .hvr-rectangle-in:active {
+        color: white;
+    }
+
+    .hvr-rectangle-in:hover:before, .hvr-rectangle-in:focus:before, .hvr-rectangle-in:active:before {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+    }
+}
+
+@media (min-width: 992px) {
+    .nav-div {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .nav-div {
+        max-width: 1140px;
+    }
+}
+
+.example-face-btns-md {
+    font-size: 0.9em !important;
+    font-weight: 600;
+    background-color: black;
+    color: white;
+    box-shadow: none !important;
+    border: calc(0.05em + 1px) solid white !important;;
+}
+
+.example-face-btns-md:hover {
+    background-color: white !important;
+    border-color: white !important;
+    color: black !important;
+    transform: scale(1.1);
+}
+
+.example-face-btns-sm {
+    font-weight: 600;
+    background-color: black !important;
+    color: white !important;
+    box-shadow: none !important;
+    border-color: white;
+}
+
+.example-face-btns-sm:hover {
+    background-color: black !important;
+    border-color: white !important;
+    color: white !important;
+}
+
+.example-face-btns-sm:active {
+    background-color: black !important;
+    border-color: white !important;
+    color: white !important;
+}
+
+.modal-options-md {
+    max-height: 30vh;
+    max-width: 90%;
+    border-style: solid;
+    border-width: 0.1rem;
+    border-color: #987e58;
+}
+
+.modal-options-sm {
+    max-width: 95%;
+    max-height: 20vh;
+    border-color: white;
+    border-style: solid;
+    border-width: 0.1em;
+    outline-style: solid;
+    outline-width: 0.35em;
+    outline-color: transparent;
+}
+
+.choose-modal-photo-btn {
+    font-family: Love;
+    font-weight: 600;
+    font-size: 1.5em;
+    width: 95%;
+    color: black;
+    background-color: white;
+    border-color: white;
+}
+
+.choose-modal-photo-btn:hover {
+    border-color: white;
+    background-color: white;
+    color: black;
+}
+
+.hidden-shining {
+    background: transparent;
+}
+
+.nav-background {
+    background-color: black;
+    padding: 0;
+}
+
+.padding-0-1 {
+    padding: 0 1rem !important;
+}
+
+.padL-0 {
+    padding-left: 0 !important;
+}
+
+.padR-0 {
+    padding-right: 0 !important;
+}
+
+div.relative {
+    position: relative;
+}
+
+.detail-table-md {
+    border-collapse: separate;
+    border-spacing: 1em;
+}
+
+.chevron-font-size {
+    font-size: 2.2em !important;
+}
+
+.padL-5px {
+    padding-left: 5px !important;
+}
+
+.padR-5px {
+    padding-right: 5px !important;
+}
+
+.w-10 {
+    width: 10% !important;
+}
+
+.hori-vert-flip {
+    transform: rotate(180deg) !important;
+}
+
+.pad-0 {
+    padding: 0 !important;
+}
+
+.correct-photo-modal-dialog {
+    max-width: none !important;
+    background-color: rgba(0, 0, 0, 0.875) !important;
+}
+
+.correct-photo-modal-content {
+    background-color: transparent !important;
+    border: 0 !important;
+}
+
+div.absolute {
+    position: absolute;
+}
+
+.top-0 {
+    top: 0 !important;
+}
+
+.right-0 {
+    right: 0 !important;
+}
+
+.center-example-faces-modal-sm {
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(calc(-50% + 15px), 0%);
+}
+
+.center-correct-photos-modal-sm {
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, 0%);
+}
+
+.correct-photos-modal-left-row-sm {
+    left: -165%;
+    top: 0;
+    margin-right: 15%;
+}
+
+.correct-photos-modal-right-row-sm {
+    top: 0;
+    right: -165%;
+    margin-left: 15%;
+}
+
+.close-correct-photo-sm {
+    font-size: 5vh;
+    color: white;
+}
+
+.close-correct-photo-transparent-sm {
+    font-size: 5vh;
+    color: transparent;
+}
+

@@ -1,2 +1,2 @@
-from .nose import GetEndpointsOfANose
 from .lips import GetEndpointsOfLips
+from .nose import GetEndpointsOfANose

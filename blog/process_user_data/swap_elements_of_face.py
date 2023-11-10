@@ -1,29 +1,39 @@
 import json
 
 import numpy as np
-from PIL import Image
 from django.http import JsonResponse
+from PIL import Image
 
 from apps.face_element_swapping import get_faces_landmarks
 from apps.face_element_swapping.change_faces import ChangeFaceElement
+
 from ..db_func import DBFunc
-from ..helpers import convert_img_to_base64, \
-    convert_base64_to_pil, \
-    convert_rgb_array_to_text, \
-    convert_text_to_rgb_array, \
-    remove_prefix_from_base64, \
-    set_mode_of_pil, \
-    correct_size, resize_img
-from ..settings import MESSAGES_REGARDING_MORE_OR_LESS_THAN_ONE_FACE, \
-    MESSAGES_REGARDING_EXACTLY_ONE_FACE, LANDMARKS_FUNCTIONS, MINIMUM_VALUE_OF_THE_ALPHA_CHANNEL, \
-    DEFAULT_PIL_MODE, PIL_MODE_OF_TRANSPARENT_PHOTOS, CORRECT_NUMBER_OF_CHANNELS_PER_PIXEL, \
-    INDEX_OF_THE_NUMBER_OF_CHANNELS_PER_PIXEL, INDEX_OF_THE_VALUE_OF_ALPHA_CHANNEL, PARTS_OF_THE_FACE_WITH_THE_CUT_FIELD
+from ..helpers import (
+    convert_base64_to_pil,
+    convert_img_to_base64,
+    convert_rgb_array_to_text,
+    convert_text_to_rgb_array,
+    correct_size,
+    remove_prefix_from_base64,
+    resize_img,
+    set_mode_of_pil,
+)
+from ..settings import (
+    CORRECT_NUMBER_OF_CHANNELS_PER_PIXEL,
+    DEFAULT_PIL_MODE,
+    INDEX_OF_THE_NUMBER_OF_CHANNELS_PER_PIXEL,
+    INDEX_OF_THE_VALUE_OF_ALPHA_CHANNEL,
+    LANDMARKS_FUNCTIONS,
+    MESSAGES_REGARDING_EXACTLY_ONE_FACE,
+    MESSAGES_REGARDING_MORE_OR_LESS_THAN_ONE_FACE,
+    MINIMUM_VALUE_OF_THE_ALPHA_CHANNEL,
+    PARTS_OF_THE_FACE_WITH_THE_CUT_FIELD,
+    PIL_MODE_OF_TRANSPARENT_PHOTOS,
+)
 
 
 class ProcessUserPhoto:
-
     def __init__(self, input_photo, part_of_face, face_id):
-
         self._input_photo = input_photo
         self._part_of_face = part_of_face
         self._face_id = face_id
@@ -37,8 +47,7 @@ class ProcessUserPhoto:
         self._more_or_less_than_one_photo = None
 
     @staticmethod
-    def prepare_params_to_face_swapping(part_of_face,
-                                        landmarks):
+    def prepare_params_to_face_swapping(part_of_face, landmarks):
         """
         :param part_of_face: a specific part of the face
         :type part_of_face: string - str
@@ -59,8 +68,7 @@ class ProcessUserPhoto:
         return endpoints
 
     @staticmethod
-    def more_or_less_than_one_face_info(number_of_detected_faces,
-                                        json_format=True):
+    def more_or_less_than_one_face_info(number_of_detected_faces, json_format=True):
         """
         :param number_of_detected_faces: number of detected faces in an image
         :type number_of_detected_faces: integer - int
@@ -78,8 +86,7 @@ class ProcessUserPhoto:
         return data
 
     @staticmethod
-    def processed_img_info(swapped_part_of_face,
-                           json_format=True):
+    def processed_img_info(swapped_part_of_face, json_format=True):
         """
         This function converts 'swapped_part_of_face' to Base64 and returns a dictionary with data.
         The dictionary may be converted into a JSON object.
@@ -103,9 +110,7 @@ class ProcessUserPhoto:
         return data
 
     @staticmethod
-    def prepare_endpoints_from_db(face_landmarks,
-                                  part_of_face,
-                                  json_format=True):
+    def prepare_endpoints_from_db(face_landmarks, part_of_face, json_format=True):
         """
         :param face_landmarks: characteristic points for specific parts of a face
         :type face_landmarks: dictionary - {} or dictionary converted into a JSON object
@@ -121,8 +126,9 @@ class ProcessUserPhoto:
         if json_format:
             face_landmarks = json.loads(face_landmarks)[part_of_face]
 
-        return ProcessUserPhoto.prepare_params_to_face_swapping(part_of_face=part_of_face,
-                                                                landmarks=face_landmarks)
+        return ProcessUserPhoto.prepare_params_to_face_swapping(
+            part_of_face=part_of_face, landmarks=face_landmarks
+        )
 
     @staticmethod
     def get_landmarks_of_parts_of_face(face_landmarks):
@@ -138,7 +144,9 @@ class ProcessUserPhoto:
         """
         landmarks_of_parts_of_face = {}
         for part_of_face in LANDMARKS_FUNCTIONS:
-            landmarks_of_parts_of_face[part_of_face] = LANDMARKS_FUNCTIONS[part_of_face](face_landmarks)
+            landmarks_of_parts_of_face[part_of_face] = LANDMARKS_FUNCTIONS[
+                part_of_face
+            ](face_landmarks)
 
         return landmarks_of_parts_of_face
 
@@ -155,29 +163,38 @@ class ProcessUserPhoto:
         The key 'value' represent the RGBA color of a pixel(list which contains four integers).
         :rtype: list - []
         """
-        if rgba_array.shape[INDEX_OF_THE_NUMBER_OF_CHANNELS_PER_PIXEL] != CORRECT_NUMBER_OF_CHANNELS_PER_PIXEL:
-            error_info = "The passed image has the incorret number of channels per pixel. " \
-                         "The correct number is equal to {correct_number_of_channels_per_pixel}.".format(
-                correct_number_of_channels_per_pixel=CORRECT_NUMBER_OF_CHANNELS_PER_PIXEL)
+        if (
+            rgba_array.shape[INDEX_OF_THE_NUMBER_OF_CHANNELS_PER_PIXEL]
+            != CORRECT_NUMBER_OF_CHANNELS_PER_PIXEL
+        ):
+            error_info = (
+                "The passed image has the incorret number of channels per pixel. "
+                "The correct number is equal to {correct_number_of_channels_per_pixel}.".format(
+                    correct_number_of_channels_per_pixel=CORRECT_NUMBER_OF_CHANNELS_PER_PIXEL
+                )
+            )
             raise ValueError(error_info)
 
         transparent_pixels = []
         rows, cols, _ = np.where(
-            rgba_array[:, :, [INDEX_OF_THE_VALUE_OF_ALPHA_CHANNEL]] < MINIMUM_VALUE_OF_THE_ALPHA_CHANNEL)
+            rgba_array[:, :, [INDEX_OF_THE_VALUE_OF_ALPHA_CHANNEL]]
+            < MINIMUM_VALUE_OF_THE_ALPHA_CHANNEL
+        )
         for i in range(len(rows)):
             row_idx = int(rows[i])
             column_idx = int(cols[i])
             pixel_value = rgba_array[row_idx][column_idx].tolist()
-            pixel_dictionary = {"row_idx": row_idx,
-                                "column_idx": column_idx,
-                                "value": pixel_value}
+            pixel_dictionary = {
+                "row_idx": row_idx,
+                "column_idx": column_idx,
+                "value": pixel_value,
+            }
             transparent_pixels.append(pixel_dictionary)
 
         return transparent_pixels
 
     @staticmethod
-    def add_transparent_pixels_to_an_rgb_image(rgb_array,
-                                               transparent_pixels):
+    def add_transparent_pixels_to_an_rgb_image(rgb_array, transparent_pixels):
         """
         This function converts 'rgb_array' into an RGBA numpy array.
         Then the pixels included in the passed list ('transparent_pixels') will be placed in this array.
@@ -201,7 +218,9 @@ class ProcessUserPhoto:
 
         for pixel in transparent_pixels:
             for channel_idx in range(len(pixel["value"])):
-                rgba_array[pixel["row_idx"]][pixel["column_idx"]][channel_idx] = pixel["value"][channel_idx]
+                rgba_array[pixel["row_idx"]][pixel["column_idx"]][channel_idx] = pixel[
+                    "value"
+                ][channel_idx]
 
         return rgba_array
 
@@ -215,25 +234,32 @@ class ProcessUserPhoto:
         'self._dst_rgb_array', 'self._dst_endpoints'.
         will have appropriate values and the variable 'self._more_or_less_than_one_photo' will be set to 'False'.
         """
-        photo_from_db = DBFunc.get_user_photo_data(photo_in_base64=self._photo_in_base64)
+        photo_from_db = DBFunc.get_user_photo_data(
+            photo_in_base64=self._photo_in_base64
+        )
         self._number_of_detected_faces = photo_from_db.number_of_detected_faces
         if self._number_of_detected_faces != 1:
             self._more_or_less_than_one_photo = True
         else:
             self._more_or_less_than_one_photo = False
 
-            self._dst_rgb_array = convert_text_to_rgb_array(text=photo_from_db.rgb_array)
-            src_face = DBFunc.get_example_photo_data(part_of_face=self._part_of_face, row_id=self._face_id)
-            self._src_endpoints = ProcessUserPhoto.prepare_endpoints_from_db(face_landmarks=src_face.face_landmarks,
-                                                                             part_of_face=self._part_of_face)
+            self._dst_rgb_array = convert_text_to_rgb_array(
+                text=photo_from_db.rgb_array
+            )
+            src_face = DBFunc.get_example_photo_data(
+                part_of_face=self._part_of_face, row_id=self._face_id
+            )
+            self._src_endpoints = ProcessUserPhoto.prepare_endpoints_from_db(
+                face_landmarks=src_face.face_landmarks, part_of_face=self._part_of_face
+            )
             self._src_rgb_array = convert_text_to_rgb_array(text=src_face.rgb_array)
             self._dst_endpoints = ProcessUserPhoto.prepare_endpoints_from_db(
                 face_landmarks=photo_from_db.face_landmarks,
-                part_of_face=self._part_of_face)
+                part_of_face=self._part_of_face,
+            )
             self._transparent_pixels = json.loads(photo_from_db.transparent_pixels)
 
-    def _save_info_on_a_new_image(self,
-                                  faces_landmarks):
+    def _save_info_on_a_new_image(self, faces_landmarks):
         """
         This function saves informations about a new image into our database.
         :param faces_landmarks: landmarks of a single face generated
@@ -241,12 +267,16 @@ class ProcessUserPhoto:
         (link to the module named 'face_recognition' - https://pypi.org/project/face_recognition/)
         :type face_landmarks: dictionary - {}
         """
-        landmarks = ProcessUserPhoto.get_landmarks_of_parts_of_face(face_landmarks=faces_landmarks)
-        DBFunc.save_user_photo(photo_in_base64=self._photo_in_base64,
-                               number_of_detected_faces=self._number_of_detected_faces,
-                               rgb_array=convert_rgb_array_to_text(rgb_array=self._dst_rgb_array),
-                               transparent_pixels=json.dumps(self._transparent_pixels),
-                               face_landmarks=json.dumps(landmarks))
+        landmarks = ProcessUserPhoto.get_landmarks_of_parts_of_face(
+            face_landmarks=faces_landmarks
+        )
+        DBFunc.save_user_photo(
+            photo_in_base64=self._photo_in_base64,
+            number_of_detected_faces=self._number_of_detected_faces,
+            rgb_array=convert_rgb_array_to_text(rgb_array=self._dst_rgb_array),
+            transparent_pixels=json.dumps(self._transparent_pixels),
+            face_landmarks=json.dumps(landmarks),
+        )
 
     def _process_new_image(self):
         """
@@ -266,25 +296,37 @@ class ProcessUserPhoto:
             dst_img_pil = resize_img(img=dst_img_pil)
 
         if dst_img_pil.mode != DEFAULT_PIL_MODE:
-            dst_rgba_array = np.array(set_mode_of_pil(pil=dst_img_pil, mode=PIL_MODE_OF_TRANSPARENT_PHOTOS),
-                                      dtype=np.uint8)
-            self._transparent_pixels = ProcessUserPhoto.prepare_transparent_pixels(rgba_array=dst_rgba_array)
+            dst_rgba_array = np.array(
+                set_mode_of_pil(pil=dst_img_pil, mode=PIL_MODE_OF_TRANSPARENT_PHOTOS),
+                dtype=np.uint8,
+            )
+            self._transparent_pixels = ProcessUserPhoto.prepare_transparent_pixels(
+                rgba_array=dst_rgba_array
+            )
 
         dst_img_pil = set_mode_of_pil(pil=dst_img_pil, mode=DEFAULT_PIL_MODE)
         self._dst_rgb_array = np.array(dst_img_pil, dtype=np.uint8)
         faces_landmarks = get_faces_landmarks(rgb_array=self._dst_rgb_array)
         self._number_of_detected_faces = len(faces_landmarks)
         if self._number_of_detected_faces != 1:
-            DBFunc.save_user_photo(photo_in_base64=self._photo_in_base64,
-                                   number_of_detected_faces=self._number_of_detected_faces)
+            DBFunc.save_user_photo(
+                photo_in_base64=self._photo_in_base64,
+                number_of_detected_faces=self._number_of_detected_faces,
+            )
             self._more_or_less_than_one_photo = True
         else:
-            landmarks_of_the_part_of_face = LANDMARKS_FUNCTIONS[self._part_of_face](faces_landmarks[0])
-            src_face = DBFunc.get_example_photo_data(part_of_face=self._part_of_face, row_id=self._face_id)
-            self._src_endpoints = ProcessUserPhoto.prepare_endpoints_from_db(face_landmarks=src_face.face_landmarks,
-                                                                             part_of_face=self._part_of_face)
-            self._dst_endpoints = ProcessUserPhoto.prepare_params_to_face_swapping(part_of_face=self._part_of_face,
-                                                                                   landmarks=landmarks_of_the_part_of_face)
+            landmarks_of_the_part_of_face = LANDMARKS_FUNCTIONS[self._part_of_face](
+                faces_landmarks[0]
+            )
+            src_face = DBFunc.get_example_photo_data(
+                part_of_face=self._part_of_face, row_id=self._face_id
+            )
+            self._src_endpoints = ProcessUserPhoto.prepare_endpoints_from_db(
+                face_landmarks=src_face.face_landmarks, part_of_face=self._part_of_face
+            )
+            self._dst_endpoints = ProcessUserPhoto.prepare_params_to_face_swapping(
+                part_of_face=self._part_of_face, landmarks=landmarks_of_the_part_of_face
+            )
             self._src_rgb_array = convert_text_to_rgb_array(text=src_face.rgb_array)
             self._more_or_less_than_one_photo = False
             self._save_info_on_a_new_image(faces_landmarks=faces_landmarks[0])
@@ -295,11 +337,13 @@ class ProcessUserPhoto:
         (The class is located in 'apps.face_element_swapping.change_faces').
         :rtype: numpy.ndarray (https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html)
         """
-        return ChangeFaceElement.change_face_element(src_rgb_array=self._src_rgb_array,
-                                                     dst_rgb_array=self._dst_rgb_array,
-                                                     src_polygon=self._src_endpoints["polygon"],
-                                                     dst_polygon=self._dst_endpoints["polygon"],
-                                                     dst_cut_field=self._dst_endpoints["cut_field"])
+        return ChangeFaceElement.change_face_element(
+            src_rgb_array=self._src_rgb_array,
+            dst_rgb_array=self._dst_rgb_array,
+            src_polygon=self._src_endpoints["polygon"],
+            dst_polygon=self._dst_endpoints["polygon"],
+            dst_cut_field=self._dst_endpoints["cut_field"],
+        )
 
     def _process_user_photo(self):
         """
@@ -308,7 +352,9 @@ class ProcessUserPhoto:
         The dictionary have been converted into a JSON object.
         :rtype: a JSON object (type - django.http.response.JsonResponse)
         """
-        self._photo_in_base64 = remove_prefix_from_base64(base64_with_prefix=self._input_photo)
+        self._photo_in_base64 = remove_prefix_from_base64(
+            base64_with_prefix=self._input_photo
+        )
 
         if DBFunc.user_photo_exists(photo_in_base64=self._photo_in_base64):
             self._process_existing_image()
@@ -317,20 +363,23 @@ class ProcessUserPhoto:
 
         if self._more_or_less_than_one_photo:
             return ProcessUserPhoto.more_or_less_than_one_face_info(
-                number_of_detected_faces=self._number_of_detected_faces)
+                number_of_detected_faces=self._number_of_detected_faces
+            )
 
         swapped_part_of_face = self._swap_part_of_face()
         if self._transparent_pixels:
-            swapped_part_of_face = ProcessUserPhoto.add_transparent_pixels_to_an_rgb_image(
-                rgb_array=swapped_part_of_face,
-                transparent_pixels=self._transparent_pixels)
-        return ProcessUserPhoto.processed_img_info(swapped_part_of_face=swapped_part_of_face)
+            swapped_part_of_face = (
+                ProcessUserPhoto.add_transparent_pixels_to_an_rgb_image(
+                    rgb_array=swapped_part_of_face,
+                    transparent_pixels=self._transparent_pixels,
+                )
+            )
+        return ProcessUserPhoto.processed_img_info(
+            swapped_part_of_face=swapped_part_of_face
+        )
 
     @classmethod
-    def process_user_photo(cls,
-                           input_photo,
-                           part_of_face,
-                           face_id):
+    def process_user_photo(cls, input_photo, part_of_face, face_id):
         """
         The function processes the input user photo('input_photo').
         If the photo contains more or less than one face,
@@ -354,7 +403,7 @@ class ProcessUserPhoto:
         the result of calling the function 'processed_img_info'(also contained in this class).
         :rtype: dictionary converted into a JSON object (type - django.http.response.JsonResponse)
         """
-        photo_processing = cls(input_photo=input_photo,
-                               part_of_face=part_of_face,
-                               face_id=face_id)
+        photo_processing = cls(
+            input_photo=input_photo, part_of_face=part_of_face, face_id=face_id
+        )
         return photo_processing._process_user_photo()

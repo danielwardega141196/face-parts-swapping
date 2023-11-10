@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Photo, ExampleLip, ExampleNose
+from .models import ExampleLip, ExampleNose, Photo
 
 admin.site.register(Photo)
 admin.site.register(ExampleLip)

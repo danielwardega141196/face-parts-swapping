@@ -46,9 +46,12 @@ def find_endpoint(coordinates, mode):
     supported_modes = list(TYPES_OF_ENDPOINTS.keys())
     if mode not in supported_modes:
         supported_modes = ", ".join(map(lambda mode: "'" + mode + "'", supported_modes))
-        raise ValueError("The passed mode: '{mode}' is not supported by this function. "
-                         "The supported modes are: {supported_modes}.".format(mode=mode,
-                                                                              supported_modes=supported_modes))
+        raise ValueError(
+            "The passed mode: '{mode}' is not supported by this function. "
+            "The supported modes are: {supported_modes}.".format(
+                mode=mode, supported_modes=supported_modes
+            )
+        )
 
     endpoint_settings = TYPES_OF_ENDPOINTS[mode]
     index_of_a_coordinate = endpoint_settings["INDEX_OF_A_COORDINATE"]
@@ -56,7 +59,9 @@ def find_endpoint(coordinates, mode):
 
     wanted_point = coordinates[0]
     for idx in range(1, len(coordinates)):
-        if comparison_operator(coordinates[idx][index_of_a_coordinate], wanted_point[index_of_a_coordinate]):
+        if comparison_operator(
+            coordinates[idx][index_of_a_coordinate], wanted_point[index_of_a_coordinate]
+        ):
             wanted_point = coordinates[idx]
     return wanted_point
 
@@ -70,8 +75,7 @@ def get_point_relative_to_another_point(endpoint, midpoint):
     :return coordinates of the end point of a line in 2D Space ([x, y] or (x, y))
     :rtype tuple - ()
     """
-    return (2 * midpoint[0] - endpoint[0],
-            2 * midpoint[1] - endpoint[1])
+    return (2 * midpoint[0] - endpoint[0], 2 * midpoint[1] - endpoint[1])
 
 
 def point_along_a_line_distanced_from_another_point(A, B, offset_from_A):
@@ -87,12 +91,13 @@ def point_along_a_line_distanced_from_another_point(A, B, offset_from_A):
     C--A------B
     :rtype tuple - ()
     """
-    point_inside_a_line = point_dividing_a_line_segment(A=A,
-                                                        B=B,
-                                                        offset_from_A=offset_from_A)
+    point_inside_a_line = point_dividing_a_line_segment(
+        A=A, B=B, offset_from_A=offset_from_A
+    )
 
-    point_outside_a_line = get_point_relative_to_another_point(endpoint=point_inside_a_line,
-                                                               midpoint=A)
+    point_outside_a_line = get_point_relative_to_another_point(
+        endpoint=point_inside_a_line, midpoint=A
+    )
     return point_outside_a_line
 
 

@@ -1,18 +1,20 @@
 import json
-from base64 import b64encode, b64decode
+from base64 import b64decode, b64encode
 from io import BytesIO
 
 import numpy as np
 from PIL import Image
 
-from .settings import DEFAULT_PIL_MODE, \
-    PIL_MODE_OF_TRANSPARENT_PHOTOS, \
-    FILE_EXTENSIONS_ACCORDING_TO_PIL_MODES, \
-    BASE64_PREFIXES_ACCORDING_TO_FILE_EXTENSIONS, \
-    SPECIAL_SIGNS_IN_FILE_NAMES, \
-    MAXIMUM_NUMBER_OF_PIXELS, \
-    MAXIMUM_SIDE_LENGTH, \
-    DEFAULT_RESIZING_FILTER
+from .settings import (
+    BASE64_PREFIXES_ACCORDING_TO_FILE_EXTENSIONS,
+    DEFAULT_PIL_MODE,
+    DEFAULT_RESIZING_FILTER,
+    FILE_EXTENSIONS_ACCORDING_TO_PIL_MODES,
+    MAXIMUM_NUMBER_OF_PIXELS,
+    MAXIMUM_SIDE_LENGTH,
+    PIL_MODE_OF_TRANSPARENT_PHOTOS,
+    SPECIAL_SIGNS_IN_FILE_NAMES,
+)
 
 
 def convert_img_to_base64(img):
@@ -38,8 +40,10 @@ def convert_img_to_base64(img):
     image_in_base64_without_prefix = buffer.getvalue()
     image_in_base64_without_prefix = b64encode(image_in_base64_without_prefix).decode()
 
-    image_in_base64_with_prefix = BASE64_PREFIXES_ACCORDING_TO_FILE_EXTENSIONS[
-                                      tmp_file_extension] + image_in_base64_without_prefix
+    image_in_base64_with_prefix = (
+        BASE64_PREFIXES_ACCORDING_TO_FILE_EXTENSIONS[tmp_file_extension]
+        + image_in_base64_without_prefix
+    )
     return image_in_base64_with_prefix
 
 
@@ -139,8 +143,7 @@ def convert_pil_to_np_array(pil, np_dtype=np.uint8):
     return np.array(pil, dtype=np_dtype)
 
 
-def correct_size(img,
-                 maximum_number_of_pixels=MAXIMUM_NUMBER_OF_PIXELS):
+def correct_size(img, maximum_number_of_pixels=MAXIMUM_NUMBER_OF_PIXELS):
     """
     This function checks if the number of pixels
     in the passed image ('img') is is less or equal
@@ -158,9 +161,11 @@ def correct_size(img,
     return height * width <= maximum_number_of_pixels
 
 
-def resize_img(img,
-               maximum_side_length=MAXIMUM_SIDE_LENGTH,
-               resizing_filter=DEFAULT_RESIZING_FILTER):
+def resize_img(
+    img,
+    maximum_side_length=MAXIMUM_SIDE_LENGTH,
+    resizing_filter=DEFAULT_RESIZING_FILTER,
+):
     """
     This function resizes the passed image keeping the aspect ratio.
     The longer side will have a length equal to 'maximum_side_length'

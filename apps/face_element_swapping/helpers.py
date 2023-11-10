@@ -13,15 +13,16 @@ def get_rectangle_in_an_image(np_array, bounding_rectangle_of_polygon):
     :rtype numpy.ndarray (https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html)
     """
     return np_array[
-           bounding_rectangle_of_polygon[1]: bounding_rectangle_of_polygon[1] + bounding_rectangle_of_polygon[3],
-           bounding_rectangle_of_polygon[0]: bounding_rectangle_of_polygon[0] + bounding_rectangle_of_polygon[2]]
+        bounding_rectangle_of_polygon[1] : bounding_rectangle_of_polygon[1]
+        + bounding_rectangle_of_polygon[3],
+        bounding_rectangle_of_polygon[0] : bounding_rectangle_of_polygon[0]
+        + bounding_rectangle_of_polygon[2],
+    ]
 
 
-def fill_pixel_if_belongs_to_polygon(rgb_array,
-                                     polygon,
-                                     row_idx,
-                                     column_idx,
-                                     pixel_value):
+def fill_pixel_if_belongs_to_polygon(
+    rgb_array, polygon, row_idx, column_idx, pixel_value
+):
     """
     This function checks if point: (column_idx, row_idx) belongs to the passed polygon('polygon').
     If so the value of 'rgb_array[row_idx][column_idx]' will be set to 'pixel_value'.

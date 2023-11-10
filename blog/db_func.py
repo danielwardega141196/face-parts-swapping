@@ -1,14 +1,15 @@
-from .models import Photo, DB_OBJECTS
+from .models import DB_OBJECTS, Photo
 
 
 class DBFunc:
-
     @staticmethod
-    def save_user_photo(photo_in_base64,
-                        number_of_detected_faces,
-                        rgb_array=None,
-                        face_landmarks=None,
-                        transparent_pixels=None):
+    def save_user_photo(
+        photo_in_base64,
+        number_of_detected_faces,
+        rgb_array=None,
+        face_landmarks=None,
+        transparent_pixels=None,
+    ):
         """
         This function saves user photos in the database table
         represented by 'Photo' object (from the file '.models').
@@ -34,11 +35,13 @@ class DBFunc:
         After all this list must be converted to a string.
         :type transparent_pixels: string - str
         """
-        Photo.objects.create(photo_in_base64=photo_in_base64,
-                             rgb_array=rgb_array,
-                             transparent_pixels=transparent_pixels,
-                             number_of_detected_faces=number_of_detected_faces,
-                             face_landmarks=face_landmarks)
+        Photo.objects.create(
+            photo_in_base64=photo_in_base64,
+            rgb_array=rgb_array,
+            transparent_pixels=transparent_pixels,
+            number_of_detected_faces=number_of_detected_faces,
+            face_landmarks=face_landmarks,
+        )
 
     @staticmethod
     def get_user_photo_data(photo_in_base64):
@@ -67,10 +70,7 @@ class DBFunc:
         return Photo.objects.filter(photo_in_base64=photo_in_base64).exists()
 
     @staticmethod
-    def example_photo_exists(part_of_face,
-                             photo_name,
-                             photo_in_base64):
-
+    def example_photo_exists(part_of_face, photo_name, photo_in_base64):
         """
         This function checks if a photo with the specified name('photo name'),
         converted to base64, exists in the database table indicated by the passed parameter 'part_of_face'.
@@ -87,23 +87,30 @@ class DBFunc:
         :raises ValueError: if the passed parameter 'part_of_face' is not a key of DB_OBJECTS dictionary
         """
         if part_of_face not in DB_OBJECTS:
-            available_parts_of_face = ", ".join(map(lambda key: "'" + str(key) + "'", DB_OBJECTS.keys()))
-            error_info = "The provided part of the face ('{part_of_face}') " \
-                         "is not available. " \
-                         "Available parts of the face: " \
-                         "{available_parts_of_face}.".format(part_of_face=part_of_face,
-                                                             available_parts_of_face=available_parts_of_face)
+            available_parts_of_face = ", ".join(
+                map(lambda key: "'" + str(key) + "'", DB_OBJECTS.keys())
+            )
+            error_info = (
+                "The provided part of the face ('{part_of_face}') "
+                "is not available. "
+                "Available parts of the face: "
+                "{available_parts_of_face}.".format(
+                    part_of_face=part_of_face,
+                    available_parts_of_face=available_parts_of_face,
+                )
+            )
             raise ValueError(error_info)
 
-        return DB_OBJECTS[part_of_face].objects.filter(photo_name=photo_name,
-                                                       photo_in_base64=photo_in_base64).exists()
+        return (
+            DB_OBJECTS[part_of_face]
+            .objects.filter(photo_name=photo_name, photo_in_base64=photo_in_base64)
+            .exists()
+        )
 
     @staticmethod
-    def save_example_photo(part_of_face,
-                           photo_name,
-                           photo_in_base64,
-                           rgb_array,
-                           face_landmarks):
+    def save_example_photo(
+        part_of_face, photo_name, photo_in_base64, rgb_array, face_landmarks
+    ):
         """
         This function saves the photo, which concern a specific part of the face, into the appropriate database table.
         :param part_of_face: a specific part of the face
@@ -125,18 +132,26 @@ class DBFunc:
         :type face_landmarks: string - str
         """
         if part_of_face not in DB_OBJECTS:
-            available_parts_of_face = ", ".join(map(lambda key: "'" + str(key) + "'", DB_OBJECTS.keys()))
-            error_info = "The provided part of the face ('{part_of_face}') " \
-                         "is not available. " \
-                         "Available parts of the face: " \
-                         "{available_parts_of_face}.".format(part_of_face=part_of_face,
-                                                             available_parts_of_face=available_parts_of_face)
+            available_parts_of_face = ", ".join(
+                map(lambda key: "'" + str(key) + "'", DB_OBJECTS.keys())
+            )
+            error_info = (
+                "The provided part of the face ('{part_of_face}') "
+                "is not available. "
+                "Available parts of the face: "
+                "{available_parts_of_face}.".format(
+                    part_of_face=part_of_face,
+                    available_parts_of_face=available_parts_of_face,
+                )
+            )
             raise ValueError(error_info)
 
-        DB_OBJECTS[part_of_face].objects.create(photo_name=photo_name,
-                                                photo_in_base64=photo_in_base64,
-                                                rgb_array=rgb_array,
-                                                face_landmarks=face_landmarks)
+        DB_OBJECTS[part_of_face].objects.create(
+            photo_name=photo_name,
+            photo_in_base64=photo_in_base64,
+            rgb_array=rgb_array,
+            face_landmarks=face_landmarks,
+        )
 
     @staticmethod
     def get_example_photo_data(part_of_face, row_id):
@@ -153,12 +168,18 @@ class DBFunc:
         :raises ValueError: if the passed parameter 'part_of_face' is not a key of DB_OBJECTS dictionary
         """
         if part_of_face not in DB_OBJECTS:
-            available_parts_of_face = ", ".join(map(lambda key: "'" + str(key) + "'", DB_OBJECTS.keys()))
-            error_info = "The provided part of the face ('{part_of_face}') " \
-                         "is not available. " \
-                         "Available parts of the face: " \
-                         "{available_parts_of_face}.".format(part_of_face=part_of_face,
-                                                             available_parts_of_face=available_parts_of_face)
+            available_parts_of_face = ", ".join(
+                map(lambda key: "'" + str(key) + "'", DB_OBJECTS.keys())
+            )
+            error_info = (
+                "The provided part of the face ('{part_of_face}') "
+                "is not available. "
+                "Available parts of the face: "
+                "{available_parts_of_face}.".format(
+                    part_of_face=part_of_face,
+                    available_parts_of_face=available_parts_of_face,
+                )
+            )
             raise ValueError(error_info)
 
         db_row = DB_OBJECTS[part_of_face].objects.filter(id=row_id)
@@ -180,16 +201,23 @@ class DBFunc:
         :raises ValueError: if the passed parameter 'part_of_face' is not a key of DB_OBJECTS dictionary.
         """
         if part_of_face not in DB_OBJECTS:
-            available_parts_of_face = ", ".join(map(lambda key: "'" + str(key) + "'", DB_OBJECTS.keys()))
-            error_info = "The provided part of the face ('{part_of_face}') " \
-                         "is not available. " \
-                         "Available parts of the face: " \
-                         "{available_parts_of_face}.".format(part_of_face=part_of_face,
-                                                             available_parts_of_face=available_parts_of_face)
+            available_parts_of_face = ", ".join(
+                map(lambda key: "'" + str(key) + "'", DB_OBJECTS.keys())
+            )
+            error_info = (
+                "The provided part of the face ('{part_of_face}') "
+                "is not available. "
+                "Available parts of the face: "
+                "{available_parts_of_face}.".format(
+                    part_of_face=part_of_face,
+                    available_parts_of_face=available_parts_of_face,
+                )
+            )
             raise ValueError(error_info)
 
-        data = [{"id": row.id,
-                 "name": row.photo_name,
-                 "source": row.photo_in_base64} for row in DB_OBJECTS[part_of_face].objects.all()]
+        data = [
+            {"id": row.id, "name": row.photo_name, "source": row.photo_in_base64}
+            for row in DB_OBJECTS[part_of_face].objects.all()
+        ]
 
         return data
